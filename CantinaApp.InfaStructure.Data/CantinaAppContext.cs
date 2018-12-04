@@ -34,9 +34,6 @@ namespace CantinaApp.InfaStructure.Data
             //AllergensType can only have one Icon
             modelBuilder.Entity<Allergen>()
                 .HasOne(a => a.FoodIconType);
-            //Main food has PK ID and IngredientsType
-            modelBuilder.Entity<MainFood>()
-                .HasKey(m => new { m.Id });
 
         }
         //Tables
