@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CantinaApp.InfaStructure.Data
 {
-    public class DBInitializer : IDBInitializer
+    public class DBInitializer
     {
         public IAuthenticationHelper authenticationHelper;
 
@@ -16,7 +16,7 @@ namespace CantinaApp.InfaStructure.Data
             authenticationHelper = authHelper;
         }
 
-        public void SeedDb(CantinaAppContext ctx)
+        public static void SeedDb(CantinaAppContext ctx)
         {
 
             string password = "1234";

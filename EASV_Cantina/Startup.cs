@@ -77,7 +77,7 @@ namespace EASV_Cantina
             }
 
             // Register database initializer
-            services.AddTransient<IDBInitializer, DBInitializer>();
+            //services.AddTransient<IDBInitializer, DBInitializer>();
 
             // Register the AuthenticationHelper in the helpers folder for dependency
             // injection. It must be registered as a singleton service. The AuthenticationHelper
@@ -140,14 +140,14 @@ namespace EASV_Cantina
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             // Initialize the database and the AuthenticationHelper.
-            using (var scope = app.ApplicationServices.CreateScope())
-            {
-                // Initialize the database
-                var services = scope.ServiceProvider;
-                var dbContext = services.GetService<CantinaAppContext>();
-                var dbInitializer = services.GetService<IDBInitializer>();
-                dbInitializer.SeedDb(dbContext);
-            }
+            //using (var scope = app.ApplicationServices.CreateScope())
+            //{
+            //    // Initialize the database
+            //    var services = scope.ServiceProvider;
+            //    var dbContext = services.GetService<CantinaAppContext>();
+            //    var dbInitializer = services.GetService<IDBInitializer>();
+            //    dbInitializer.SeedDb(dbContext);
+            //}
 
             // For convenience, I want detailed exception information always. However, this statement should
             // be removed, when the application is released.
@@ -161,6 +161,7 @@ namespace EASV_Cantina
                     var ctx = scope.ServiceProvider.GetService<CantinaAppContext>();
                     ctx.Database.EnsureDeleted();
                     ctx.Database.EnsureCreated();
+                    DBInitializer.SeedDb(ctx);
                 }
 
             }
@@ -170,6 +171,7 @@ namespace EASV_Cantina
                 {
                     var ctx = scope.ServiceProvider.GetService<CantinaAppContext>();
                     ctx.Database.EnsureCreated();
+                    DBInitializer.SeedDb(ctx);
                 }
                 app.UseHsts();
             }
