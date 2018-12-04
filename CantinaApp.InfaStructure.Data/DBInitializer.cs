@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CantinaApp.InfaStructure.Data
 {
-    public class DBInitializer : IDBInitializer
+    public class DBInitializer
     {
         public IAuthenticationHelper authenticationHelper;
 
@@ -16,7 +16,7 @@ namespace CantinaApp.InfaStructure.Data
             authenticationHelper = authHelper;
         }
 
-        public void SeedDb(CantinaAppContext ctx)
+        public static void SeedDb(CantinaAppContext ctx)
         {
 
             string password = "1234";
@@ -43,6 +43,11 @@ namespace CantinaApp.InfaStructure.Data
             var mainFood = ctx.MainFood.Add(new MainFood()
             {
                 MainFoodName = "SalsaFlamingoHamburger"
+            }).Entity;
+
+            var mainFood1 = ctx.MainFood.Add(new MainFood()
+            {
+                MainFoodName = "PineAppleCoffeeSandwitch"
             }).Entity;
 
             var ingr = ctx.Ingredients.Add(new Ingredients()
@@ -77,6 +82,7 @@ namespace CantinaApp.InfaStructure.Data
             ctx.Allergen.AddRange(alrg);
             ctx.Ingredients.AddRange(ingr);
             ctx.MainFood.AddRange(mainFood);
+            ctx.MainFood.AddRange(mainFood1);
             ctx.User.AddRange(users);
             ctx.SaveChanges();
         }
