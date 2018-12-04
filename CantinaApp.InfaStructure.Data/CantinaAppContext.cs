@@ -17,6 +17,7 @@ namespace CantinaApp.InfaStructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+
         }
         //Tables
         public DbSet<Users> User { get; set; }
