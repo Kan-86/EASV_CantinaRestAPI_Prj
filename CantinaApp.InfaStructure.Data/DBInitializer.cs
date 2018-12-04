@@ -40,43 +40,43 @@ namespace CantinaApp.InfaStructure.Data
                 }
             };
 
-            var mainFood = ctx.MainFood.Add(new MainFood()
-            {
-                MainFoodName = "SalsaFlamingoHamburger"
-            }).Entity;
+            //var mainFood = ctx.MainFood.Add(new MainFood()
+            //{
+            //    MainFoodName = "SalsaFlamingoHamburger"
+            //}).Entity;
 
-            var ingr = ctx.Ingredients.Add(new Ingredients()
-            {
-                IngredientType = "KasperSauce"
-            }).Entity;
+            //var ingr = ctx.Ingredients.Add(new Ingredients()
+            //{
+            //    IngredientType = "KasperSauce"
+            //}).Entity;
 
-            var alrg = ctx.Allergen.Add(new Allergen()
-            {
-                AllergenType = "Penus"
-            }).Entity;
+            //var alrg = ctx.Allergen.Add(new Allergen()
+            //{
+            //    AllergenType = "Penus"
+            //}).Entity;
 
-            var spcl = ctx.SpecialOffers.Add(new SpecialOffers()
-            {
-                SpecialOfferName = "Danish Meatballs"
-            }).Entity;
+            //var spcl = ctx.SpecialOffers.Add(new SpecialOffers()
+            //{
+            //    SpecialOfferName = "Danish Meatballs"
+            //}).Entity;
 
-            var motd = ctx.MOTD.Add(new MOTD()
-            {
-                TipOfTheDay = "One Dane per day, makes problems go away"
-            }).Entity;
+            //var motd = ctx.MOTD.Add(new MOTD()
+            //{
+            //    TipOfTheDay = "One Dane per day, makes problems go away"
+            //}).Entity;
 
-            var motd1 = ctx.MOTD.Add(new MOTD()
-            {
-                TipOfTheDay = "Why do Danes go out when they hear a thunderstorm? Because they think they are being photographed :D"
-            }).Entity;
+            //var motd1 = ctx.MOTD.Add(new MOTD()
+            //{
+            //    TipOfTheDay = "Why do Danes go out when they hear a thunderstorm? Because they think they are being photographed :D"
+            //}).Entity;
 
 
-            ctx.MOTD.AddRange(motd1);
-            ctx.MOTD.AddRange(motd);
-            ctx.SpecialOffers.AddRange(spcl);
-            ctx.Allergen.AddRange(alrg);
-            ctx.Ingredients.AddRange(ingr);
-            ctx.MainFood.AddRange(mainFood);
+            //ctx.MOTD.AddRange(motd1);
+            //ctx.MOTD.AddRange(motd);
+            //ctx.SpecialOffers.AddRange(spcl);
+            //ctx.Allergen.AddRange(alrg);
+            //ctx.Ingredients.AddRange(ingr);
+            //ctx.MainFood.AddRange(mainFood);
             ctx.User.AddRange(users);
             ctx.SaveChanges();
         }
