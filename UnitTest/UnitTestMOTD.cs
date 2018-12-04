@@ -1,13 +1,19 @@
+using CantinaApp.Core.ApplicationServices;
+using CantinaApp.Core.DomainServices;
+using CantinaApp.InfaStructure.Data;
+using CantinaApp.InfaStructure.Data.SQLRepositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTestMOTD
     {
         [TestMethod]
-        public void TestMethod1()
+        public void  MOTDWithNoTip()
         {
+            
 
         }
     }
