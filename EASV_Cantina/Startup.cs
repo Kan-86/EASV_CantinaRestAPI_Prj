@@ -146,8 +146,7 @@ namespace EASV_Cantina
                 var services = scope.ServiceProvider;
                 var dbContext = services.GetService<CantinaAppContext>();
                 var dbInitializer = services.GetService<IDBInitializer>();
-                var ctx = scope.ServiceProvider.GetService<CantinaAppContext>();
-                ctx.Database.EnsureCreated();
+                dbContext.Database.EnsureCreated();
                 dbInitializer.SeedDb(dbContext);
             }
 
