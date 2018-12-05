@@ -41,7 +41,6 @@ namespace CantinaApp.InfaStructure.Data
             //Main food has PK ID and IngredientsType
             modelBuilder.Entity<MainFood>()
                 .HasKey(m => new { m.Id });
-
         }
         //Tables
         public DbSet<Users> User { get; set; }
