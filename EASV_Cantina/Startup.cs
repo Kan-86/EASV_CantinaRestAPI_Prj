@@ -146,14 +146,14 @@ namespace EASV_Cantina
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //using (var scope = app.ApplicationServices.CreateScope())
-                //{
-                //    var services = scope.ServiceProvider;
-                //    var dbContext = services.GetService<CantinaAppContext>();
-                //    var dbInitializer = services.GetService<IDBInitializer>();
-                //    dbContext.Database.EnsureCreated();
-                //    dbInitializer.SeedDb(dbContext);
-                //}
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var services = scope.ServiceProvider;
+                    var dbContext = services.GetService<CantinaAppContext>();
+                    var dbInitializer = services.GetService<IDBInitializer>();
+                    dbContext.Database.EnsureCreated();
+                    dbInitializer.SeedDb(dbContext);
+                }
             }
             else
             {
