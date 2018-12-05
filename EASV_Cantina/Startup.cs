@@ -179,7 +179,7 @@ namespace EASV_Cantina
                 app.UseHsts();
             }
 
-            // Use authentication
+            // Use authentications
             app.UseAuthentication();
 
             // Enable CORS (must precede app.UseMvc()):
