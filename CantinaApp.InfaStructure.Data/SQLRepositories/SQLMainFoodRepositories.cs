@@ -60,7 +60,10 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             {
                 return _ctx.MainFood;
             }
-            return _ctx.MainFood.Skip((filter.CurrentPage - 1) * filter.ItemsPrPage)
+            return _ctx.MainFood
+                    .Include(c => c.RecipeLines)
+                    .ThenInclude(c => c.IngredientsType)
+                    .Skip((filter.CurrentPage - 1) * filter.ItemsPrPage)
                 .Take(filter.ItemsPrPage);
         }
 
