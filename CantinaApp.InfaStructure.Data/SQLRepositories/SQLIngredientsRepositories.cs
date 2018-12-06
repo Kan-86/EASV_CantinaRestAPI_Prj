@@ -39,7 +39,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         {
             return _ctx.Ingredients
                     .Include(c => c.RecipeLines)
-                    .Include(c => c.AllergenType)
+                    .ThenInclude(c => c.MainFoodType)
                     .FirstOrDefault(c => c.Id == id);
         }
 
