@@ -19,6 +19,6 @@ namespace CantinaApp.Core.DomainServices
 
         Ingredients UpdateIngredient(Ingredients ingredientUpdate);
 
-        Ingredients ReadByIdIncludeFoodIcon(int id);
+        Ingredients ReadByIdIncludeAllergens(int id);
     }
 }

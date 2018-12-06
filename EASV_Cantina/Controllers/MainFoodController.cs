@@ -30,7 +30,7 @@ namespace EASV_CantinaRestAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<MainFood> Get(int id)
         {
-            return _mainFoodService.FindMainFoodIdIncludeIngredients(id);
+            return _mainFoodService.FindMainFoodIdIncludeRecipAlrg(id);
         }
 
         // POST api/<controller>

@@ -18,7 +18,5 @@ namespace CantinaApp.Core.DomainServices
         Allergens ReadById(int id);
 
         Allergens UpdateAllergen(Allergens allergenUpdate);
-
-        Allergens ReadyByIdIncludeFoodIcon(int id);
     }
 }
