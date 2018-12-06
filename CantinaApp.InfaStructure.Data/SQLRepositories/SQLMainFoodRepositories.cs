@@ -52,9 +52,22 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public MainFood UpdateMainFood(MainFood foodUpdate)
         {
+            //Clone orderlines to new location in memory, so they are not overridden on Attach
+            var newRecipeLines = new List<RecipeLine>(foodUpdate.RecipeLines);
+            //Attach order so basic properties are updated
             _ctx.Attach(foodUpdate).State = EntityState.Modified;
-            _ctx.Entry(foodUpdate).Reference(o => o.MainFoodName).IsModified = true;
+            //Remove all orderlines with updated order information
+            _ctx.RecipeLine.RemoveRange(
+                _ctx.RecipeLine.Where(ol => ol.MainFoodId == foodUpdate.Id)
+            );
+            //Add all orderlines with updated order information
+            foreach (var ol in newRecipeLines)
+            {
+                _ctx.Entry(ol).State = EntityState.Added;
+            }
+            // Save it
             _ctx.SaveChanges();
+            //Return it
             return foodUpdate;
         }
 
@@ -70,7 +83,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         {
             return _ctx.MainFood
                     .Include(c => c.RecipeLines)
-                    .Include(c => c.AllergensTypeId)
+                    .ThenInclude(c => c.MainFoodType)
                     .FirstOrDefault(c => c.Id == id);
         }
     }
