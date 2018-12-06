@@ -13,9 +13,10 @@ namespace CantinaApp.InfaStructure.Data
         {
 
         }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             //Overrides the modelbuilder
             base.OnModelCreating(modelBuilder);
 
@@ -29,10 +30,12 @@ namespace CantinaApp.InfaStructure.Data
                 .HasForeignKey(rl => rl.MainFoodId);
             //Ingredientsd can only have one Icon
 
+
             modelBuilder.Entity<RecipeLine>()
                 .HasOne(a => a.IngredientsType)
                 .WithMany(m => m.RecipeLines)
                 .HasForeignKey(rl => rl.IngredientsId);
+
         }
         //Tables
         public DbSet<Users> User { get; set; }

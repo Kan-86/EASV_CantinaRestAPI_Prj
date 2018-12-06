@@ -77,7 +77,7 @@ namespace EASV_Cantina
             }
 
             // Register database initializer
-            services.AddTransient<IDBInitializer, DBInitializer>();
+            //services.AddTransient<IDBInitializer, DBInitializer>();
 
             // Register the AuthenticationHelper in the helpers folder for dependency
             // injection. It must be registered as a singleton service. The AuthenticationHelper
@@ -136,6 +136,8 @@ namespace EASV_Cantina
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+
             // For convenience, I want detailed exception information always. However, this statement should
             // be removed, when the application is released.
             app.UseDeveloperExceptionPage();
@@ -145,23 +147,27 @@ namespace EASV_Cantina
                 app.UseDeveloperExceptionPage();
                 using (var scope = app.ApplicationServices.CreateScope())
                 {
-                    var services = scope.ServiceProvider;
-                    var dbContext = services.GetService<CantinaAppContext>();
-                    var dbInitializer = services.GetService<IDBInitializer>();
-                    dbContext.Database.EnsureCreated();
-                    dbInitializer.SeedDb(dbContext);
+
+                    var ctx = scope.ServiceProvider.GetService<CantinaAppContext>();
+                    ctx.Database.EnsureDeleted();
+                    ctx.Database.EnsureCreated();
+                    DBInitializer.SeedDb(ctx);
                 }
+
+
             }
             else
             {
                 using (var scope = app.ApplicationServices.CreateScope())
                 {
+
                     var services = scope.ServiceProvider;
                     var dbContext = services.GetService<CantinaAppContext>();
                     dbContext.Database.EnsureCreated();
                 //    var dbInitializer = services.GetService<IDBInitializer>();
                 //    dbContext.Database.EnsureCreated();
                 //    dbInitializer.SeedDb(dbContext);
+
                 }
                 app.UseHsts();
             }
