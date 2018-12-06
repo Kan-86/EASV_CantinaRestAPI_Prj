@@ -51,7 +51,12 @@ namespace CantinaApp.InfaStructure.Data
                 MainFoodName = "PineAppleCoffeeSandwitch"
             }).Entity;
 
-           
+            var ingr = ctx.Ingredients.Add(new Ingredients()
+            {
+                IngredientName = "KasperBBQ Sauce",
+                
+            }).Entity;
+
             var spcl = ctx.SpecialOffers.Add(new SpecialOffers()
             {
                 SpecialOfferName = "Danish Meatballs"
@@ -71,6 +76,7 @@ namespace CantinaApp.InfaStructure.Data
             ctx.MOTD.AddRange(motd1);
             ctx.MOTD.AddRange(motd);
             ctx.SpecialOffers.AddRange(spcl);
+            ctx.Ingredients.AddRange(ingr);
             ctx.MainFood.AddRange(mainFood);
             ctx.MainFood.AddRange(mainFood1);
             ctx.User.AddRange(users);

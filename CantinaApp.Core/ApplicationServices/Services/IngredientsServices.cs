@@ -26,15 +26,9 @@ namespace CantinaApp.Core.ApplicationServices.Services
             return _ingredientsRepo.DeleteIngredient(id);
         }
 
-        public Ingredients FindIngredientId(int id)
-        {
-            return _ingredientsRepo.ReadById(id);
-        }
-
         public Ingredients FindIngredientIdIncludeMainFood(int id)
         {
-            var ingr = _ingredientsRepo.ReadByIdIncludeFoodIcon(id);
-            return ingr;
+            return _ingredientsRepo.ReadByIdIncludeAllergens(id);
         }
 
         public List<Ingredients> GetIngredients()

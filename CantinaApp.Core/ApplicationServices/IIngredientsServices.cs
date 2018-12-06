@@ -13,8 +13,6 @@ namespace CantinaApp.Core.ApplicationServices
 
         Ingredients DeleteIngredient(int id);
 
-        Ingredients FindIngredientId(int id);
-
         Ingredients FindIngredientIdIncludeMainFood(int id);
 
         Ingredients UpdateIngredient(Ingredients ingredientUpdate);

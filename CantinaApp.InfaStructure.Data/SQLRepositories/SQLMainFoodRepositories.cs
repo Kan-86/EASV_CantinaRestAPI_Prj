@@ -40,12 +40,6 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
                 .FirstOrDefault(c => c.Id == id);
         }
 
-        public MainFood ReadByIdIncludeIngredients(int id)
-        {
-            return _ctx.MainFood
-                .FirstOrDefault(c => c.Id == id);
-        }
-
         public IEnumerable<MainFood> ReadMainFood(Filter filter = null)
         {
             if (filter == null)
@@ -70,6 +64,14 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             _ctx.MainFood.Remove(mFoodDelete);
             _ctx.SaveChanges();
             return mFoodDelete;
+        }
+
+        public MainFood ReadByIdIncludeRecipAlrg(int id)
+        {
+            return _ctx.MainFood
+                    .Include(c => c.RecipeLines)
+                    .Include(c => c.AllergensTypeId)
+                    .FirstOrDefault(c => c.Id == id);
         }
     }
 }

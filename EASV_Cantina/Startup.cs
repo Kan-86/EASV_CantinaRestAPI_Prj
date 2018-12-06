@@ -149,7 +149,6 @@ namespace EASV_Cantina
                 {
 
                     var ctx = scope.ServiceProvider.GetService<CantinaAppContext>();
-                    ctx.Database.EnsureDeleted();
                     ctx.Database.EnsureCreated();
                     DBInitializer.SeedDb(ctx);
                 }

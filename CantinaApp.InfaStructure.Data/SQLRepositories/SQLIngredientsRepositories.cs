@@ -35,10 +35,12 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
                 .FirstOrDefault(c => c.Id == id);
         }
 
-        public Ingredients ReadByIdIncludeFoodIcon(int id)
+        public Ingredients ReadByIdIncludeAllergens(int id)
         {
             return _ctx.Ingredients
-                 .FirstOrDefault(o => o.Id == id);
+                    .Include(c => c.RecipeLines)
+                    .Include(c => c.AllergenType)
+                    .FirstOrDefault(c => c.Id == id);
         }
 
         public IEnumerable<Ingredients> ReadIngredients()

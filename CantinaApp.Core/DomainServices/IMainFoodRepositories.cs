@@ -19,7 +19,7 @@ namespace CantinaApp.Core.DomainServices
 
         MainFood UpdateMainFood(MainFood foodUpdate);
 
-        MainFood ReadByIdIncludeIngredients(int id);
+        MainFood ReadByIdIncludeRecipAlrg(int id);
 
         int Count();  
     }

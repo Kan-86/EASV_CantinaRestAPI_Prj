@@ -15,7 +15,7 @@ namespace CantinaApp.Core.ApplicationServices
 
         MainFood FindMainFoodId(int id);
 
-        MainFood FindMainFoodIdIncludeIngredients(int id);
+        MainFood FindMainFoodIdIncludeRecipAlrg(int id);
 
         MainFood UpdateMainFood(MainFood mainFoodUpdate);
 
