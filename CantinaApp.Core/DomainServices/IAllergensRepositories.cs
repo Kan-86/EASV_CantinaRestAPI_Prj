@@ -7,18 +7,18 @@ namespace CantinaApp.Core.DomainServices
 {
     public interface IAllergensRepositories
     {
-        Allergen GeAllergenByID(int id);
+        Allergens GeAllergenByID(int id);
 
-        IEnumerable<Allergen> ReadMAllergen();
+        IEnumerable<Allergens> ReadMAllergen();
 
-        Allergen CreateAllergen(Allergen allergen);
+        Allergens CreateAllergen(Allergens allergen);
 
-        Allergen DeleteAllergen(int id);
+        Allergens DeleteAllergen(int id);
 
-        Allergen ReadById(int id);
+        Allergens ReadById(int id);
 
-        Allergen UpdateAllergen(Allergen allergenUpdate);
+        Allergens UpdateAllergen(Allergens allergenUpdate);
 
-        Allergen ReadyByIdIncludeFoodIcon(int id);
+        Allergens ReadyByIdIncludeFoodIcon(int id);
     }
 }

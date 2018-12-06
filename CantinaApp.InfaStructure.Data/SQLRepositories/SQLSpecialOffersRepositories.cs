@@ -31,8 +31,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public SpecialOffers ReadByIdIncludeIngr(int id)
         {
-            return _ctx.SpecialOffers.Include(p => p.FoodIconType)
-                    .Include(p => p.IngredientsType).Include(p => p.AllergenType)
+            return _ctx.SpecialOffers
                         .FirstOrDefault(c => c.Id == id);
         }
 
@@ -44,10 +43,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         public SpecialOffers UpdateSpecialOffers(SpecialOffers specialOffers)
         {
             _ctx.Attach(specialOffers).State = EntityState.Modified;
-            _ctx.Entry(specialOffers).Reference(o => o.AllergenType).IsModified = true;
-            _ctx.Entry(specialOffers).Reference(o => o.IngredientsType).IsModified = true;
             _ctx.Entry(specialOffers).Reference(o => o.SpecialOfferName).IsModified = true;
-            _ctx.Entry(specialOffers).Reference(o => o.FoodIconType).IsModified = true;
             _ctx.SaveChanges();
             return specialOffers;
         }

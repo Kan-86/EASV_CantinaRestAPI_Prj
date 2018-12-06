@@ -16,37 +16,33 @@ namespace CantinaApp.InfaStructure.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Main food can have many ingredients
-            modelBuilder.Entity<Ingredients>()
-                .HasOne(p => p.MainFoodType)
-                .WithMany(s => s.IngredientsType)
-                .OnDelete(DeleteBehavior.SetNull);
+
+            //Overrides the modelbuilder
+            base.OnModelCreating(modelBuilder);
+
             //Main Food can have many allergens
-            modelBuilder.Entity<Allergen>()
-                .HasOne(a => a.MainFoodType)
-                .WithMany(a => a.AllergensType)
-                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<RecipeLine>()
+                .HasKey(a => new { a.MainFoodId , a.IngredientsId });
             //Main Food can only have one Icon
-            modelBuilder.Entity<MainFood>()
-                .HasOne(a => a.FoodIconType);
+            modelBuilder.Entity<RecipeLine>()
+                .HasOne(a => a.MainFoodType)
+                .WithMany(m => m.RecipeLines)
+                .HasForeignKey(rl => rl.MainFoodId);
             //Ingredientsd can only have one Icon
-            modelBuilder.Entity<Ingredients>()
-                .HasOne(a => a.FoodIconType);
-            //Special Offers can only have one Icon
-            modelBuilder.Entity<SpecialOffers>()
-                .HasOne(a => a.FoodIconType);
-            //AllergensType can only have one Icon
-            modelBuilder.Entity<Allergen>()
-                .HasOne(a => a.FoodIconType);
+
+
+            modelBuilder.Entity<RecipeLine>()
+                .HasOne(a => a.IngredientsType)
+                .WithMany(m => m.RecipeLines)
+                .HasForeignKey(rl => rl.IngredientsId);
 
         }
         //Tables
         public DbSet<Users> User { get; set; }
         public DbSet<MainFood> MainFood { get; set; }
-        public DbSet<FoodIcon> FoodIcon { get; set; }
         public DbSet<Ingredients> Ingredients { get; set; }
-        public DbSet<Allergen> Allergen { get; set; }
         public DbSet<SpecialOffers> SpecialOffers { get; set; }
+        public DbSet<Allergens> Allergen { get; set; }
         public DbSet<MOTD> MOTD { get; set; }
     }
 }

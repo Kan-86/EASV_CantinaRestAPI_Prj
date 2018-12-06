@@ -46,7 +46,6 @@ namespace EASV_CantinaRestAPI.Controllers
         public ActionResult<Ingredients> Put(int id, [FromBody]Ingredients ingr)
         {
             var entity = _ingredientService.UpdateIngredient(ingr);
-            entity.IngredientType = ingr.IngredientType;
             return entity;
         }
 
