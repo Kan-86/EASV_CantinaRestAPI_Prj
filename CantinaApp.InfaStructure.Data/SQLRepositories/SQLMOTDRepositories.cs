@@ -41,7 +41,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         public MOTD UpdateMOTD(MOTD motdUpdate)
         {
             _ctx.Attach(motdUpdate).State = EntityState.Modified;
-            _ctx.Entry(motdUpdate).Reference(o => o.TipOfTheDay).IsModified = true;
+           
             _ctx.SaveChanges();
             return motdUpdate;
         }

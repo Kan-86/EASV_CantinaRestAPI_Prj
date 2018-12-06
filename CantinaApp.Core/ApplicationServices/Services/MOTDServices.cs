@@ -38,7 +38,8 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public MOTD UpdateMOTD(MOTD motdUpdate)
         {
-            throw new NotImplementedException();
+          return _MOTDRepo.UpdateMOTD(motdUpdate); 
+
         }
     }
 }
