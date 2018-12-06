@@ -57,6 +57,12 @@ namespace CantinaApp.InfaStructure.Data
                 
             }).Entity;
 
+            var ingr1 = ctx.Ingredients.Add(new Ingredients()
+            {
+                IngredientName = "Jacob and Sams Sauce",
+
+            }).Entity;
+
             var spcl = ctx.SpecialOffers.Add(new SpecialOffers()
             {
                 SpecialOfferName = "Danish Meatballs"
@@ -77,6 +83,7 @@ namespace CantinaApp.InfaStructure.Data
             ctx.MOTD.AddRange(motd);
             ctx.SpecialOffers.AddRange(spcl);
             ctx.Ingredients.AddRange(ingr);
+            ctx.Ingredients.AddRange(ingr1);
             ctx.MainFood.AddRange(mainFood);
             ctx.MainFood.AddRange(mainFood1);
             ctx.User.AddRange(users);

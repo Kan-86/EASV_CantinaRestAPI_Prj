@@ -19,8 +19,22 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public Ingredients CreateIngredient(Ingredients ingredient)
         {
+            //Clone orderlines to new location in memory, so they are not overridden on Attach
+            var newRecipeLines = new List<RecipeLine>(ingredient.RecipeLines);
+            //Attach order so basic properties are updated
             _ctx.Attach(ingredient).State = EntityState.Added;
+            //Remove all orderlines with updated order information
+            _ctx.RecipeLine.RemoveRange(
+                _ctx.RecipeLine.Where(ol => ol.MainFoodId == ingredient.Id)
+            );
+            //Add all orderlines with updated order information
+            foreach (var ol in newRecipeLines)
+            {
+                _ctx.Entry(ol).State = EntityState.Added;
+            }
+            // Save it
             _ctx.SaveChanges();
+            //Return it
             return ingredient;
         }
 
