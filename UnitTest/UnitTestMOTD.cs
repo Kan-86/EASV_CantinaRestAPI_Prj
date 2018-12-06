@@ -43,5 +43,52 @@ namespace UnitTest
 
             motdService.AddMOTD(motd);
         }
+
+        [TestMethod]
+        public void DeleteWithIdOf0()
+        {
+            int id = 0;
+            Exception ex = Assert.ThrowsException<ArgumentException>(() =>
+                motdService.DeleteMOTD(id));
+            Assert.AreEqual("You need to have an higher id than 0", ex.Message);
+        }
+
+        [TestMethod]
+        public void DeleteWithokayId()
+        {
+            int id = 1;
+            motdService.DeleteMOTD(id);
+        }
+
+        [TestMethod]
+        public void ReadWithIdOf0()
+        {
+            int id = 0;
+            Exception ex = Assert.ThrowsException<ArgumentException>(() =>
+                motdService.GetMOTDById(id));
+            Assert.AreEqual("You need to have an higher id than 0", ex.Message);
+        }
+
+        [TestMethod]
+        public void ReadWithIdOf1()
+        {
+            int id = 1;
+            motdService.DeleteMOTD(id);
+        }
+
+        [TestMethod]
+        public void UpdateWithId0()
+        {
+            var motd = new MOTD()
+            {
+                Id = 0,
+                TipOfTheDay = "One Dane per day, makes problems go away"
+            };
+
+            Exception ex = Assert.ThrowsException<ArgumentException>(() =>
+                motdService.UpdateMOTD(motd));
+            Assert.AreEqual("You need to have an higher id than 0", ex.Message);
+        }
+
     }
 }

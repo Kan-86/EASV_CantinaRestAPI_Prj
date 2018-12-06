@@ -20,7 +20,7 @@ namespace UnitTest
             AllergensService = new AllergenServices(AllergensRepo.Object);
         }
 
-        [TestMethod]
+       /* [TestMethod]
         public void createAllergenWithoutNew()
         {
             var allergen = new Allergen()
@@ -34,6 +34,6 @@ namespace UnitTest
 
             };
 
-        }
+        }*/
     }
 }

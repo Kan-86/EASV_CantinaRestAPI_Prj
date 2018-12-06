@@ -18,11 +18,19 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public MOTD AddMOTD(MOTD motd)
         {
+            if (motd.TipOfTheDay == null)
+            {
+                throw new ArgumentException("You need to write a message");
+            }
             return _MOTDRepo.CreateMOTD(motd);
         }
 
         public MOTD DeleteMOTD(int id)
         {
+            if (id < 1)
+            {
+                throw new ArgumentException("You need to have an higher id than 0");
+            }
             return _MOTDRepo.DeleteMOTD(id);
         }
         
@@ -33,12 +41,20 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public MOTD GetMOTDById(int id)
         {
+            if (id < 1)
+            {
+                throw new ArgumentException("You need to have an higher id than 0");
+            }
             return _MOTDRepo.ReadMOTD().ToList().FirstOrDefault(motd => motd.Id == id);
         }
 
         public MOTD UpdateMOTD(MOTD motdUpdate)
         {
-          return _MOTDRepo.UpdateMOTD(motdUpdate); 
+            if (motdUpdate.Id < 1)
+            {
+                throw new ArgumentException("You need to have an higher id than 0");
+            }
+            return _MOTDRepo.UpdateMOTD(motdUpdate); 
 
         }
     }
