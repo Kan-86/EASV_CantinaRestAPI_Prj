@@ -38,15 +38,29 @@ namespace EASV_CantinaRestAPI.Controllers
         [HttpPost]
         public ActionResult<Ingredients> Post([FromBody]Ingredients ingr)
         {
-            return _ingredientService.AddIngredient(ingr);
+            try
+            {
+                return Ok(_ingredientService.AddIngredient(ingr));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
         public ActionResult<Ingredients> Put(int id, [FromBody]Ingredients ingr)
         {
-            var entity = _ingredientService.UpdateIngredient(ingr);
-            return entity;
+            try
+            {
+                var entity = _ingredientService.UpdateIngredient(ingr);
+                return entity;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // DELETE api/<controller>/5
