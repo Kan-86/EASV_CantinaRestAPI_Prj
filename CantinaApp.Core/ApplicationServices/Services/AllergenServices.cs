@@ -16,27 +16,27 @@ namespace CantinaApp.Core.ApplicationServices.Services
             _allergensRepo = allergensRepo;
         }
 
-        public Allergen AddAllergen(Allergen allergen)
+        public Allergens AddAllergen(Allergens allergen)
         {
             return _allergensRepo.CreateAllergen(allergen);
         }
 
-        public Allergen DeleteAllergen(int id)
+        public Allergens DeleteAllergen(int id)
         {
             return _allergensRepo.DeleteAllergen(id);
         }
 
-        public Allergen FindAllergenId(int id)
+        public Allergens FindAllergenId(int id)
         {
             return _allergensRepo.ReadById(id);
         }
 
-        public List<Allergen> GetAllergens()
+        public List<Allergens> GetAllergens()
         {
             return _allergensRepo.ReadMAllergen().ToList();
         }
 
-        public Allergen UpdateAllergen(Allergen allergenUpdate)
+        public Allergens UpdateAllergen(Allergens allergenUpdate)
         {
             return _allergensRepo.UpdateAllergen(allergenUpdate);
         }

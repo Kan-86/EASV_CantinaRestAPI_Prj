@@ -46,9 +46,6 @@ namespace EASV_CantinaRestAPI.Controllers
         {
             var entity = _mainFoodService.UpdateMainFood(mFood);
             entity.MainFoodName = mFood.MainFoodName;
-            entity.IngredientsType = mFood.IngredientsType;
-            entity.FoodIconType = mFood.FoodIconType;
-            entity.AllergensType = mFood.AllergensType;
             return entity;
         }
 

@@ -36,14 +36,13 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public MainFood ReadById(int id)
         {
-            return _ctx.MainFood.Include(p => p.FoodIconType)
+            return _ctx.MainFood
                 .FirstOrDefault(c => c.Id == id);
         }
 
         public MainFood ReadByIdIncludeIngredients(int id)
         {
-            return _ctx.MainFood.Include(p => p.FoodIconType)
-                .Include(m => m.AllergensType).Include(f => f.IngredientsType)
+            return _ctx.MainFood
                 .FirstOrDefault(c => c.Id == id);
         }
 

@@ -38,6 +38,7 @@ namespace CantinaApp.InfaStructure.Data
         public DbSet<MainFood> MainFood { get; set; }
         public DbSet<Ingredients> Ingredients { get; set; }
         public DbSet<SpecialOffers> SpecialOffers { get; set; }
+        public DbSet<Allergens> Allergen { get; set; }
         public DbSet<MOTD> MOTD { get; set; }
     }
 }

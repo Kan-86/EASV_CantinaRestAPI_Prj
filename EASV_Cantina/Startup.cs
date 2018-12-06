@@ -100,9 +100,6 @@ namespace EASV_Cantina
             services.AddScoped<IMOTDRepositories, SQLMOTDRepositories>();
             services.AddScoped<IMOTDServices, MOTDServices>();
 
-            services.AddScoped<IFoodIconRepositories, SQLFoodIconRepositories>();
-            services.AddScoped<IFoodIconServices, FoodIconServices>();
-
             services.AddScoped<IUserRepositories<Users>, SQLUserRepositories>();
             services.AddScoped<IUsersServices, UsersServices>();
 
