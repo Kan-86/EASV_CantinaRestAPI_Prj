@@ -64,7 +64,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
                     .Include(c => c.RecipeLines)
                     .ThenInclude(c => c.IngredientsType)
                     .Skip((filter.CurrentPage - 1) * filter.ItemsPrPage)
-                .Take(filter.ItemsPrPage);
+                .Take(filter.ItemsPrPage).ToList();
         }
 
         public MainFood UpdateMainFood(MainFood foodUpdate)
