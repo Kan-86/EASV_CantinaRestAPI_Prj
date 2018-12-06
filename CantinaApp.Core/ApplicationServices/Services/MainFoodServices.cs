@@ -12,14 +12,12 @@ namespace CantinaApp.Core.ApplicationServices.Services
     {
         readonly IMainFoodRepositories _mainFoodRepo;
         readonly IIngredientsRepositories _ingredientsRepo;
-        readonly IAllergensRepositories _allergensRepo;
 
         public MainFoodServices(IMainFoodRepositories mainFoodRepo, 
-            IIngredientsRepositories ingredientsRepo, IAllergensRepositories allergensRepo)
+            IIngredientsRepositories ingredientsRepo)
         {
             _mainFoodRepo = mainFoodRepo;
             _ingredientsRepo = ingredientsRepo;
-            _allergensRepo = allergensRepo;
         }
 
         public MainFood AddMainFood(MainFood mainFood)

@@ -18,10 +18,6 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public Ingredients AddIngredient(Ingredients ingredient)
         {
-            if (string.IsNullOrEmpty(ingredient.IngredientType))
-            {
-                throw new InvalidOperationException("An ingredient needs a type."); 
-            }
             return _ingredientsRepo.CreateIngredient(ingredient);
         }
 

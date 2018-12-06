@@ -100,9 +100,6 @@ namespace EASV_Cantina
             services.AddScoped<IMOTDRepositories, SQLMOTDRepositories>();
             services.AddScoped<IMOTDServices, MOTDServices>();
 
-            services.AddScoped<IFoodIconRepositories, SQLFoodIconRepositories>();
-            services.AddScoped<IFoodIconServices, FoodIconServices>();
-
             services.AddScoped<IUserRepositories<Users>, SQLUserRepositories>();
             services.AddScoped<IUsersServices, UsersServices>();
 
@@ -139,16 +136,6 @@ namespace EASV_Cantina
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            // Initialize the database and the AuthenticationHelper.
-            using (var scope = app.ApplicationServices.CreateScope())
-            {
-                // Initialize the database
-                var services = scope.ServiceProvider;
-                var dbContext = services.GetService<CantinaAppContext>();
-                var dbInitializer = services.GetService<IDBInitializer>();
-                dbInitializer.SeedDb(dbContext);
-            }
-
             // For convenience, I want detailed exception information always. However, this statement should
             // be removed, when the application is released.
             app.UseDeveloperExceptionPage();
@@ -156,13 +143,30 @@ namespace EASV_Cantina
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var services = scope.ServiceProvider;
+                    var dbContext = services.GetService<CantinaAppContext>();
+                    var dbInitializer = services.GetService<IDBInitializer>();
+                    dbContext.Database.EnsureCreated();
+                    dbInitializer.SeedDb(dbContext);
+                }
             }
             else
             {
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var services = scope.ServiceProvider;
+                    var dbContext = services.GetService<CantinaAppContext>();
+                    dbContext.Database.EnsureCreated();
+                //    var dbInitializer = services.GetService<IDBInitializer>();
+                //    dbContext.Database.EnsureCreated();
+                //    dbInitializer.SeedDb(dbContext);
+                }
                 app.UseHsts();
             }
 
-            // Use authentication
+            // Use authentications
             app.UseAuthentication();
 
             // Enable CORS (must precede app.UseMvc()):

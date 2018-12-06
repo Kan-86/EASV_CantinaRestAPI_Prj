@@ -17,37 +17,36 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             _ctx = ctx;
         }
 
-        public Allergen CreateAllergen(Allergen allergen)
+        public Allergens CreateAllergen(Allergens allergen)
         {
             _ctx.Attach(allergen).State = EntityState.Added;
             _ctx.SaveChanges();
             return allergen;
         }
 
-        public Allergen GeAllergenByID(int id)
+        public Allergens GeAllergenByID(int id)
         {
             return _ctx.Allergen.FirstOrDefault(m => m.Id == id);
         }
 
-        public Allergen ReadById(int id)
+        public Allergens ReadById(int id)
         {
-            return _ctx.Allergen.Include(p => p.FoodIconType)
+            return _ctx.Allergen
                         .FirstOrDefault(c => c.Id == id);
         }
 
-        public IEnumerable<Allergen> ReadMAllergen()
+        public IEnumerable<Allergens> ReadMAllergen()
         {
             return _ctx.Allergen;
         }
 
-        public Allergen ReadyByIdIncludeFoodIcon(int id)
+        public Allergens ReadyByIdIncludeFoodIcon(int id)
         {
             return _ctx.Allergen
-                         .Include(o => o.FoodIconType)
                          .FirstOrDefault(o => o.Id == id);
         }
 
-        public Allergen UpdateAllergen(Allergen allergenUpdate)
+        public Allergens UpdateAllergen(Allergens allergenUpdate)
         {
             _ctx.Attach(allergenUpdate).State = EntityState.Modified;
             _ctx.Entry(allergenUpdate).Reference(o => o.AllergenType).IsModified = true;
@@ -55,7 +54,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             return allergenUpdate;
         }
 
-        public Allergen DeleteAllergen(int id)
+        public Allergens DeleteAllergen(int id)
         {
             var alrgDelete = _ctx.Allergen.ToList().FirstOrDefault(b => b.Id == id);
             _ctx.Allergen.Remove(alrgDelete);

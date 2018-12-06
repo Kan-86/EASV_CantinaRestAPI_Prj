@@ -47,8 +47,6 @@ namespace EASV_CantinaRestAPI.Controllers
         {
             var entity = _spclService.UpdateSpecialOffer(spcl);
             entity.SpecialOfferName = spcl.SpecialOfferName;
-            entity.AllergenType = spcl.AllergenType;
-            entity.FoodIconType = spcl.FoodIconType;
             return entity;
         }
 

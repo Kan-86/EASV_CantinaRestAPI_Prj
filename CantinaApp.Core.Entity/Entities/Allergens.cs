@@ -4,10 +4,9 @@ using System.Text;
 
 namespace CantinaApp.Core.Entity.Entities
 {
-    public class Allergen
+    public class Allergens
     {
         public int Id { get; set; }
-        public String AllergenType { get; set; }
-        public FoodIcon FoodIconType{ get; set; }
+        public string AllergenType { get; set; }
     }
 }
