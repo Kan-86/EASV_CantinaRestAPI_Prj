@@ -10,7 +10,7 @@ using System.Text;
 
 namespace UnitTest
 {
-    class UnitTestAllergen
+    public class UnitTestAllergen
     {
         Mock<IAllergensRepositories> AllergensRepo;
         IAllergenServices AllergensService;

@@ -43,7 +43,6 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         public SpecialOffers UpdateSpecialOffers(SpecialOffers specialOffers)
         {
             _ctx.Attach(specialOffers).State = EntityState.Modified;
-            _ctx.Entry(specialOffers).Reference(o => o.SpecialOfferName).IsModified = true;
             _ctx.SaveChanges();
             return specialOffers;
         }
