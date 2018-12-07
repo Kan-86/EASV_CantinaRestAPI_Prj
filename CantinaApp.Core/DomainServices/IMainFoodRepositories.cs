@@ -1,4 +1,5 @@
-﻿using CantinaApp.Core.Entity.Entities;
+﻿using CantinaApp.Core.DomainServices.List;
+using CantinaApp.Core.Entity.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ namespace CantinaApp.Core.DomainServices
     {
         MainFood GetMainFoodByID(int id);
 
-        IEnumerable<MainFood> ReadMainFood(Filter filter = null);
+        ListMany<MainFood> ReadMainFood(Filter filter = null);
 
         MainFood CreateMainFood(MainFood mainFood);
 

@@ -1,4 +1,5 @@
-﻿using CantinaApp.Core.Entity.Entities;
+﻿using CantinaApp.Core.DomainServices.List;
+using CantinaApp.Core.Entity.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,7 @@ namespace CantinaApp.Core.ApplicationServices
 {
     public interface IMainFoodServices
     {
-        List<MainFood> GetMainFood();
+        ListMany<MainFood> GetMainFood();
 
         MainFood AddMainFood(MainFood mainFood);
 
