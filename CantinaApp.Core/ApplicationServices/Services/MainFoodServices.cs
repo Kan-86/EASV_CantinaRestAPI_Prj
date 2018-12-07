@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CantinaApp.Core.DomainServices;
+using CantinaApp.Core.DomainServices.List;
 using CantinaApp.Core.Entity.Entities;
 
 namespace CantinaApp.Core.ApplicationServices.Services
@@ -45,11 +46,12 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public MainFood FindMainFoodIdIncludeRecipAlrg(int id)
         {
-            return _mainFoodRepo.ReadByIdIncludeRecipAlrg(id);
+            
+           return _mainFoodRepo.ReadByIdIncludeRecipAlrg(id);
         }
 
         public List<MainFood> GetFilteredMainFood(Filter filter)
-        {
+        {/*
             if (filter.CurrentPage < 0 || filter.ItemsPrPage < 0)
             {
                 throw new InvalidDataException("Current page and Items page must be zero or more");
@@ -58,12 +60,13 @@ namespace CantinaApp.Core.ApplicationServices.Services
             {
                 throw new InvalidDataException("Index out of bounds, Curret page is too high");
             }
-            return _mainFoodRepo.ReadMainFood(filter).ToList();
+            return _mainFoodRepo.ReadMainFood(filter).ToList();*/
+            throw new Exception();
         }
 
-        public List<MainFood> GetMainFood()
+        public ListMany<MainFood> GetMainFood()
         {
-            return _mainFoodRepo.ReadMainFood().ToList();
+            return _mainFoodRepo.ReadMainFood();
         }
 
         public MainFood UpdateMainFood(MainFood mainFoodUpdate)

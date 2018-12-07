@@ -1,4 +1,5 @@
 ﻿using CantinaApp.Core.DomainServices;
+using CantinaApp.Core.DomainServices.List;
 using CantinaApp.Core.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -40,18 +41,29 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
                 .FirstOrDefault(c => c.Id == id);
         }
 
-        public IEnumerable<MainFood> ReadMainFood(Filter filter = null)
+        public ListMany<MainFood> ReadMainFood(Filter filter = null)
         {
+            var query = _ctx.Set<MainFood>();
+
+           
             if (filter == null)
             {
-                return _ctx.MainFood;
+                return new ListMany<MainFood>()
+                {
+                    ListT = _ctx.MainFood.ToList()
+                };
+                
             }
-            return _ctx.MainFood.Skip((filter.CurrentPage - 1) * filter.ItemsPrPage)
-                .Take(filter.ItemsPrPage);
+            return new ListMany<MainFood>()
+            {
+                ListT = new List<MainFood>()
+              
+            };
         }
 
         public MainFood UpdateMainFood(MainFood foodUpdate)
         {
+
             //Clone orderlines to new location in memory, so they are not overridden on Attach
             var newRecipeLines = new List<RecipeLine>(foodUpdate.RecipeLines);
             //Attach order so basic properties are updated
