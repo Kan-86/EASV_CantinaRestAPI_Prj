@@ -22,9 +22,9 @@ namespace EASV_CantinaRestAPI.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public ActionResult<ListMany<MainFood>> Get()
+        public ActionResult<IEnumerable<MainFood>> Get()
         {
-            return _mainFoodService.GetMainFood();
+            return _mainFoodService.GetMainFood().ToList();
         }
 
         // GET api/<controller>/5

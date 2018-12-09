@@ -64,7 +64,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
             throw new Exception();
         }
 
-        public ListMany<MainFood> GetMainFood()
+        public IEnumerable<MainFood> GetMainFood()
         {
             return _mainFoodRepo.ReadMainFood();
         }

@@ -8,7 +8,7 @@ namespace CantinaApp.Core.ApplicationServices
 {
     public interface IMainFoodServices
     {
-        ListMany<MainFood> GetMainFood();
+        IEnumerable<MainFood> GetMainFood();
 
         MainFood AddMainFood(MainFood mainFood);
 
