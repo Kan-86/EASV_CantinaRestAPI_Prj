@@ -71,6 +71,10 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public MainFood UpdateMainFood(MainFood mainFoodUpdate)
         {
+            if (string.IsNullOrEmpty(mainFood.MainFoodName))
+            {
+                throw new InvalidOperationException("Main Food needs a name.");
+            }
             return _mainFoodRepo.UpdateMainFood(mainFoodUpdate);
         }
     }

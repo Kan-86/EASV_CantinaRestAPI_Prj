@@ -18,16 +18,46 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public Ingredients AddIngredient(Ingredients ingredient)
         {
+            if (ingredient.IngredientName == null)
+            {
+                throw new InvalidOperationException("Ingredient need a name");
+            }
+            if (ingredient.RecipeLines == null)
+            {
+                throw new InvalidOperationException("You need to have \"RecipsLines\" Connection between food and ingredients ");
+            }
+            else{
+                foreach (var item in ingredient.RecipeLines)
+                {
+                    if (item.IngredientsId < 1)
+                    {
+                        throw new InvalidOperationException("RecipLines IngredientsId need to be higher than 1");
+                    }
+                    if (item.MainFoodId < 1)
+                    {
+                        throw new InvalidOperationException("RecipLines IngredientsId need to be higher than 1");
+                    }
+                }
+
+            }
             return _ingredientsRepo.CreateIngredient(ingredient);
         }
 
         public Ingredients DeleteIngredient(int id)
         {
+            if (id < 1)
+            {
+                throw new InvalidOperationException("id need to higher than 1");
+            }
             return _ingredientsRepo.DeleteIngredient(id);
         }
 
         public Ingredients FindIngredientIdIncludeMainFood(int id)
         {
+            if (id < 1)
+            {
+                throw new InvalidOperationException("id need to higher than 1");
+            }
             return _ingredientsRepo.ReadByIdIncludeAllergens(id);
         }
 
@@ -38,6 +68,30 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public Ingredients UpdateIngredient(Ingredients ingredientUpdate)
         {
+            if (ingredientUpdate.IngredientName == null)
+            {
+                throw new InvalidOperationException("Ingredient need a name");
+            }
+            if (ingredientUpdate.RecipeLines == null)
+            {
+                throw new InvalidOperationException("You need to have \"RecipsLines\" Connection between food and ingredients ");
+            }
+            else
+            {
+                foreach (var item in ingredientUpdate.RecipeLines)
+                {
+                    if (item.IngredientsId < 1)
+                    {
+                        throw new InvalidOperationException("RecipLines IngredientsId need to be higher than 1");
+                    }
+                    if (item.MainFoodId < 1)
+                    {
+                        throw new InvalidOperationException("RecipLines IngredientsId need to be higher than 1");
+                    }
+                }
+
+            }
+        
             return _ingredientsRepo.UpdateIngredient(ingredientUpdate);
         }
     }

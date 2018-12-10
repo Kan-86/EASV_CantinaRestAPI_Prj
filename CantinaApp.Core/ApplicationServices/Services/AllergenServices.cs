@@ -18,6 +18,11 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public Allergens AddAllergen(Allergens allergen)
         {
+            if (allergen.AllergenType == null)
+            {
+                throw new InvalidOperationException("You need to add a name for the allergen");
+            }
+            
             return _allergensRepo.CreateAllergen(allergen);
         }
 
