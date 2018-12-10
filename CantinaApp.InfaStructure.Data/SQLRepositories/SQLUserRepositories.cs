@@ -20,7 +20,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public void Add(Users entity)
         {
-            db.User.Add(entity);
+            db.UserFromCantine.Add(entity);
             db.SaveChanges();
         }
 
@@ -32,18 +32,18 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public Users Get(long id)
         {
-            return db.User.FirstOrDefault(b => b.Id == id);
+            return db.UserFromCantine.FirstOrDefault(b => b.Id == id);
         }
 
         public IEnumerable<Users> GetAll()
         {
-            return db.User.ToList();
+            return db.UserFromCantine.ToList();
         }
 
         public void Remove(long id)
         {
-            var item = db.User.FirstOrDefault(b => b.Id == id);
-            db.User.Remove(item);
+            var item = db.UserFromCantine.FirstOrDefault(b => b.Id == id);
+            db.UserFromCantine.Remove(item);
             db.SaveChanges();
         }
     }

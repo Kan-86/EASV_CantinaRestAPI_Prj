@@ -91,7 +91,7 @@ namespace CantinaApp.InfaStructure.Data
             ctx.Ingredients.AddRange(ingr1);
             ctx.MainFood.AddRange(mainFood);
             ctx.MainFood.AddRange(mainFood1);
-            ctx.User.AddRange(users);
+            ctx.UserFromCantine.AddRange(users);
             ctx.SaveChanges();
         }
 
