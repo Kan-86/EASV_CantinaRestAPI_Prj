@@ -38,7 +38,14 @@ namespace EASV_CantinaRestAPI.Controllers
         [HttpPost]
         public ActionResult<MainFood> Post([FromBody]MainFood mFood)
         {
-            return _mainFoodService.AddMainFood(mFood);
+            try
+            {
+                return Ok(_mainFoodService.AddMainFood(mFood));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // PUT api/<controller>/5
