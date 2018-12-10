@@ -19,9 +19,23 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public Allergens CreateAllergen(Allergens allergen)
         {
+            //Clone allergensInMenu to new location in memory, so they are not overridden on Attach
+            var newAllergenInMenu = new List<AllergensInMenu>(allergen.AllergensInMenu);
+            //Attach ingredient so basic properties are updated
             _ctx.Attach(allergen).State = EntityState.Added;
+            //Remove all recipelines with updated order information
+            _ctx.AllergensInMenu.RemoveRange(
+                _ctx.AllergensInMenu.Where(ol => ol.MainFoodId == allergen.Id)
+            );
+            //Add all orderlines with updated order information
+            foreach (var ol in newAllergenInMenu)
+            {
+                _ctx.Entry(ol).State = EntityState.Added;
+            }
+            // Save it
             _ctx.SaveChanges();
-            return allergen;
+            //Return it
+            return allergen ;
         }
 
         public Allergens GeAllergenByID(int id)
@@ -48,9 +62,26 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public Allergens UpdateAllergen(Allergens allergenUpdate)
         {
+            foreach (var item in _ctx.AllergensInMenu.ToList().Where(c => c.AllergenID == allergenUpdate.Id))
+            {
+                _ctx.AllergensInMenu.Remove(item);
+            }
+
+            //Clone allergens in menu to new location in memory, so they are not overridden on Attach
+            var relation = new List<AllergensInMenu>(allergenUpdate.AllergensInMenu);
+            //Attach A.I.M so basic properties are updated
             _ctx.Attach(allergenUpdate).State = EntityState.Modified;
-            _ctx.Entry(allergenUpdate).Reference(o => o.AllergenType).IsModified = true;
+            
+            //Add all orderlines with updated order information
+
+            foreach (var ol in relation)
+            {
+
+                _ctx.Entry(ol).State = EntityState.Added;
+            }
+            // Save it
             _ctx.SaveChanges();
+            //Return it
             return allergenUpdate;
         }
 
