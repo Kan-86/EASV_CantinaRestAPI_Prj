@@ -24,37 +24,72 @@ namespace EASV_CantinaRestAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<SpecialOffers>> Get()
         {
-            return _spclService.GetSpecialOffers();
+            try
+            {
+                return Ok(_spclService.GetSpecialOffers());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public ActionResult<SpecialOffers> Get(int id)
         {
-            return _spclService.GetSpecialOffersById(id);
+            try
+            {
+                return Ok(_spclService.GetSpecialOffersById(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // POST api/<controller>
         [HttpPost]
         public ActionResult<SpecialOffers> Post([FromBody]SpecialOffers spcl)
         {
-            return _spclService.AddSpecialOffer(spcl);
+            try
+            {
+                return Ok(_spclService.AddSpecialOffer(spcl));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
         public ActionResult<SpecialOffers> Put(int id, [FromBody]SpecialOffers spcl)
         {
-            var entity = _spclService.UpdateSpecialOffer(spcl);
-            entity.SpecialOfferName = spcl.SpecialOfferName;
-            return entity;
+            try
+            {
+                var entity = _spclService.UpdateSpecialOffer(spcl);
+                entity.SpecialOfferName = spcl.SpecialOfferName;
+                return Ok(entity);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
         public ActionResult<SpecialOffers> Delete(int id)
         {
-            return _spclService.DeleteSpecialOffer(id);
+            try
+            {
+                return Ok(_spclService.DeleteSpecialOffer(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
