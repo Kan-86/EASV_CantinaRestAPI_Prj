@@ -46,6 +46,10 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public MainFood FindMainFoodIdIncludeRecipAlrg(int id)
         {
+            /*if (_mainFoodRepo.ReadByIdIncludeRecipAlrg(id) == null)
+            {
+                throw new ExecutionEngineException("Main food requires a recipe");
+            }*/
             
            return _mainFoodRepo.ReadByIdIncludeRecipAlrg(id);
         }

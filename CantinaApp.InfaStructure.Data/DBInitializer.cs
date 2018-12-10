@@ -40,22 +40,26 @@ namespace CantinaApp.InfaStructure.Data
                 }
             };
 
+            var ingr = ctx.Ingredients.Add(new Ingredients()
+            {
+                IngredientName = "KasperBBQ Sauce",
+
+            }).Entity;
+
             var mainFood = ctx.MainFood.Add(new MainFood()
             {
-                MainFoodName = "SalsaFlamingoHamburger"
+                MainFoodName = "SalsaFlamingoHamburger",
+                FoodDate = DateTime.Today
             }).Entity;
 
 
             var mainFood1 = ctx.MainFood.Add(new MainFood()
             {
-                MainFoodName = "PineAppleCoffeeSandwitch"
+                MainFoodName = "PineAppleCoffeeSandwitch",
+                FoodDate = DateTime.Today
             }).Entity;
 
-            var ingr = ctx.Ingredients.Add(new Ingredients()
-            {
-                IngredientName = "KasperBBQ Sauce",
-                
-            }).Entity;
+
 
             var ingr1 = ctx.Ingredients.Add(new Ingredients()
             {
@@ -65,7 +69,8 @@ namespace CantinaApp.InfaStructure.Data
 
             var spcl = ctx.SpecialOffers.Add(new SpecialOffers()
             {
-                SpecialOfferName = "Danish Meatballs"
+                SpecialOfferName = "Danish Meatballs",
+                OffersDate = DateTime.Today
             }).Entity;
 
             var motd = ctx.MOTD.Add(new MOTD()

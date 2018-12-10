@@ -9,6 +9,7 @@ namespace CantinaApp.Core.Entity.Entities
         public int Id { get; set; }
         public String SpecialOfferName { get; set; }
         public Double Price { get; set; }
+        public DateTime OffersDate { get; set; }
         public int FoodIconId { get; set; }
     }
 }

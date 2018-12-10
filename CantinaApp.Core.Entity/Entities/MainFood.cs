@@ -10,6 +10,7 @@ namespace CantinaApp.Core.Entity.Entities
         public String MainFoodName { get; set; }
         public List<RecipeLine> RecipeLines { get; set; }
         public List<Allergens> AllergensTypeId { get; set; }
+        public DateTime FoodDate { get; set; }
         public int FoodIconId { get; set; }
     }
 }
