@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EASV_CantinaRestAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AllergenController: ControllerBase
     {
         private readonly IAllergenServices _AllergenService;
