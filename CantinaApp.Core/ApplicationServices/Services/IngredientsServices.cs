@@ -23,11 +23,19 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public Ingredients DeleteIngredient(int id)
         {
+            if (id < 1)
+            {
+                throw new InvalidOperationException("ID requires to be greater than 0.");
+            }
             return _ingredientsRepo.DeleteIngredient(id);
         }
 
         public Ingredients FindIngredientIdIncludeMainFood(int id)
         {
+            if (id < 1)
+            {
+                throw new InvalidOperationException("ID requires to be greater than 0.");
+            }
             return _ingredientsRepo.ReadByIdIncludeAllergens(id);
         }
 

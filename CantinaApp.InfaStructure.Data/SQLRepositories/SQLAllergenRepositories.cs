@@ -38,7 +38,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             return allergen ;
         }
 
-        public Allergens GeAllergenByID(int id)
+        public Allergens GetAllergenByID(int id)
         {
             return _ctx.Allergen.FirstOrDefault(m => m.Id == id);
         }

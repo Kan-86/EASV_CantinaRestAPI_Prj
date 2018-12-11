@@ -24,6 +24,16 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             db.SaveChanges();
         }
 
+        public Users CreateUsers(Users user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Users DeleteUsers(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Edit(Users entity)
         {
             db.Entry(entity).State = EntityState.Modified;
@@ -40,11 +50,26 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             return db.UserFromCantine.ToList();
         }
 
+        public Users GetUserByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Users> ReadAllUsers()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Remove(long id)
         {
             var item = db.UserFromCantine.FirstOrDefault(b => b.Id == id);
             db.UserFromCantine.Remove(item);
             db.SaveChanges();
+        }
+
+        public Users UpdateUser(Users userUpdate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

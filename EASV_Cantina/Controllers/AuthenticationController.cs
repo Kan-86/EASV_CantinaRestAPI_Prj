@@ -14,11 +14,11 @@ namespace EASV_CantinaRestAPI.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IUserRepositories<Users> repository;
+        private readonly IUserRepositories<Users> _userRepository;
 
         public AuthenticationController(IUserRepositories<Users> repos)
         {
-            repository = repos;
+            _userRepository = repos;
         }
 
         // GET: api/Todo
@@ -26,15 +26,15 @@ namespace EASV_CantinaRestAPI.Controllers
         [HttpGet]
         public IEnumerable<Users> GetAll()
         {
-            return repository.GetAll();
+            return _userRepository.ReadAllUsers();
         }
 
         // GET: api/Todo/5
         [Authorize(Roles = "Administrator")]
         [HttpGet("{id}", Name = "Get")]
-        public IActionResult Get(long id)
+        public IActionResult Get(int id)
         {
-            var item = repository.Get(id);
+            var item = _userRepository.GetUserByID(id);
             if (item == null)
             {
                 return NotFound();
@@ -45,53 +45,53 @@ namespace EASV_CantinaRestAPI.Controllers
         // POST: api/Todo
         [Authorize(Roles = "Administrator")]
         [HttpPost]
-        public IActionResult Post([FromBody] Users item)
+        public IActionResult Post([FromBody] Users user)
         {
-            if (item == null)
+            if (user == null)
             {
                 return BadRequest();
             }
 
-            repository.Add(item);
+            _userRepository.CreateUsers(user);
 
-            return CreatedAtRoute("Get", new { id = item.Id }, item);
+            return CreatedAtRoute("Get", new { id = user.Id }, user);
         }
 
         // PUT: api/Todo/5
         [Authorize(Roles = "Administrator")]
         [HttpPut("{id}")]
-        public IActionResult Put(long id, [FromBody] Users item)
+        public IActionResult Put(int id, [FromBody] Users user)
         {
-            if (item == null || item.Id != id)
+            if (user == null || user.Id != id)
             {
                 return BadRequest();
             }
 
-            var todo = repository.Get(id);
+            var todo = _userRepository.GetUserByID(id);
             if (todo == null)
             {
                 return NotFound();
             }
 
-            todo.Username = item.Username;
-            todo.IsAdmin = item.IsAdmin;
+            todo.Username = user.Username;
+            todo.IsAdmin = user.IsAdmin;
 
-            repository.Edit(todo);
+            _userRepository.UpdateUser(todo);
             return new NoContentResult();
         }
 
         // DELETE: api/ApiWithActions/5
         [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
+        public IActionResult Delete(int id)
         {
-            var todo = repository.Get(id);
+            var todo = _userRepository.GetUserByID(id);
             if (todo == null)
             {
                 return NotFound();
             }
 
-            repository.Remove(id);
+            _userRepository.DeleteUsers(id);
             return new NoContentResult();
         }
     }

@@ -1,11 +1,8 @@
 ﻿using CantinaApp.Core.DomainServices;
-using CantinaApp.Core.DomainServices.List;
 using CantinaApp.Core.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CantinaApp.InfaStructure.Data.SQLRepositories
 {

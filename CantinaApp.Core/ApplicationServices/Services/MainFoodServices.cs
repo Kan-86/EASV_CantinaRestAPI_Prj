@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using CantinaApp.Core.DomainServices;
-using CantinaApp.Core.DomainServices.List;
 using CantinaApp.Core.Entity.Entities;
 
 namespace CantinaApp.Core.ApplicationServices.Services
@@ -13,12 +9,15 @@ namespace CantinaApp.Core.ApplicationServices.Services
     {
         readonly IMainFoodRepositories _mainFoodRepo;
         readonly IIngredientsRepositories _ingredientsRepo;
+        private readonly IAllergensRepositories _allergensRepo;
 
         public MainFoodServices(IMainFoodRepositories mainFoodRepo, 
-            IIngredientsRepositories ingredientsRepo)
+            IIngredientsRepositories ingredientsRepo,
+            IAllergensRepositories allergensRepo)
         {
             _mainFoodRepo = mainFoodRepo;
             _ingredientsRepo = ingredientsRepo;
+            _allergensRepo = allergensRepo;
         }
 
         public MainFood AddMainFood(MainFood mainFood)
@@ -32,21 +31,21 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public MainFood DeleteMainFood(int id)
         {
-            if (id < 1)
+            if (id <= 0)
             {
-                throw new InvalidOperationException("Main Food Id needs to be larger than 1.");
+                throw new InvalidOperationException("ID requires to be greater than 0.");
             }
             return _mainFoodRepo.DeleteMainFood(id);
         }
 
         public MainFood FindMainFoodIdIncludeRecipAlrg(int id)
         {
-            /*if (_mainFoodRepo.ReadByIdIncludeRecipAlrg(id) == null)
+            if (id <= 0)
             {
-                throw new ExecutionEngineException("Main food requires a recipe");
-            }*/
-            
-           return _mainFoodRepo.ReadByIdIncludeRecipAlrg(id);
+                throw new InvalidOperationException("ID requires to be greater than 0.");
+            }
+
+            return _mainFoodRepo.ReadByIdIncludeRecipAlrg(id);
         }
 
         public IEnumerable<MainFood> GetMainFood()

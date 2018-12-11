@@ -15,9 +15,9 @@ namespace CantinaApp.Core.ApplicationServices.Services
             _userRepo = userRepo;
         }
 
-        public Users AddUsers(Users motd)
+        public Users AddUsers(Users user)
         {
-            throw new NotImplementedException();
+            return _userRepo.CreateUsers(user);
         }
 
         public Users DeleteMOTD(int id)

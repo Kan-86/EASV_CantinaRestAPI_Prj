@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CantinaApp.Core.DomainServices;
 using CantinaApp.Core.Entity.Entities;
 
@@ -28,7 +26,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public Allergens FindAllergenId(int id)
         {
-            return _allergensRepo.ReadById(id);
+            return _allergensRepo.GetAllergenByID(id);
         }
 
         public List<Allergens> GetAllergens()
