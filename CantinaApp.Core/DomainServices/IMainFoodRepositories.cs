@@ -6,7 +6,7 @@ namespace CantinaApp.Core.DomainServices
     public interface IMainFoodRepositories
     {
 
-        IEnumerable<MainFood> ReadMainFood(/*Filter filter = null*/);
+        IEnumerable<MainFood> ReadMainFood(Filter filter = null);
 
         MainFood CreateMainFood(MainFood mainFood);
 

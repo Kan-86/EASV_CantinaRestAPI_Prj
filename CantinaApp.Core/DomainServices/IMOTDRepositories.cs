@@ -1,7 +1,5 @@
 ﻿using CantinaApp.Core.Entity.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CantinaApp.Core.DomainServices
 {
@@ -10,6 +8,8 @@ namespace CantinaApp.Core.DomainServices
         IEnumerable<MOTD> ReadMOTD();
 
         MOTD CreateMOTD(MOTD motd);
+
+        MOTD GetMOTDById(int id);
 
         MOTD DeleteMOTD(int id);
         

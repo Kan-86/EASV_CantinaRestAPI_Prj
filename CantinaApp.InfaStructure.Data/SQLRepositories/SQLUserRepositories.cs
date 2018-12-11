@@ -11,43 +11,32 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
     public class SQLUserRepositories : IUserRepositories<Users>
     {
 
-        private readonly CantinaAppContext db;
+        private readonly CantinaAppContext _ctx;
 
         public SQLUserRepositories(CantinaAppContext context)
         {
-            db = context;
+            _ctx = context;
         }
 
         public void Add(Users entity)
         {
-            db.UserFromCantine.Add(entity);
-            db.SaveChanges();
+            _ctx.UserFromCantine.Add(entity);
+            _ctx.SaveChanges();
         }
 
         public Users CreateUsers(Users user)
         {
-            throw new NotImplementedException();
+            _ctx.Attach(user).State = EntityState.Added;
+            _ctx.SaveChanges();
+            return user;
         }
 
         public Users DeleteUsers(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Edit(Users entity)
-        {
-            db.Entry(entity).State = EntityState.Modified;
-            db.SaveChanges();
-        }
-
-        public Users Get(long id)
-        {
-            return db.UserFromCantine.FirstOrDefault(b => b.Id == id);
-        }
-
-        public IEnumerable<Users> GetAll()
-        {
-            return db.UserFromCantine.ToList();
+            var userToDelete = _ctx.UserFromCantine.ToList().FirstOrDefault(b => b.Id == id);
+            _ctx.UserFromCantine.Remove(userToDelete);
+            _ctx.SaveChanges();
+            return userToDelete;
         }
 
         public Users GetUserByID(int id)
@@ -58,13 +47,6 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         public IEnumerable<Users> ReadAllUsers()
         {
             throw new NotImplementedException();
-        }
-
-        public void Remove(long id)
-        {
-            var item = db.UserFromCantine.FirstOrDefault(b => b.Id == id);
-            db.UserFromCantine.Remove(item);
-            db.SaveChanges();
         }
 
         public Users UpdateUser(Users userUpdate)

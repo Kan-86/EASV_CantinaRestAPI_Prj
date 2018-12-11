@@ -32,7 +32,13 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             _ctx.SaveChanges();
             return MOTDDeleted;
         }
-       
+
+        public MOTD GetMOTDById(int id)
+        {
+            return _ctx.MOTD.FirstOrDefault(m => m.Id == id);
+
+        }
+
         public IEnumerable<MOTD> ReadMOTD()
         {
             return _ctx.MOTD;
