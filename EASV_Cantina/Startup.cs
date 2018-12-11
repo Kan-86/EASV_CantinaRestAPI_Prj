@@ -115,7 +115,7 @@ namespace EASV_Cantina
                 options.SerializerSettings.ContractResolver =
                 new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                options.SerializerSettings.MaxDepth = 2;
+                options.SerializerSettings.MaxDepth = 1;
 
             });
 
