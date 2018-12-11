@@ -55,22 +55,22 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
                 .FirstOrDefault(c => c.Id == id);
         }
 
-        public IEnumerable<MainFood> ReadMainFood(Filter filter = null)
+        public IEnumerable<MainFood> ReadMainFood(/*Filter filter = null*/)
         {
             var query = _ctx.Set<MainFood>();
 
-           
-            if (filter == null)
-            {
-                return _ctx.MainFood;
 
-            }
+            //if (filter == null)
+            //{
 
+            //    return _ctx.MainFood;
+
+            //}
             return _ctx.MainFood
                      .Include(c => c.RecipeLines)
-                     .ThenInclude(c => c.IngredientsType)
-                     .Skip((filter.CurrentPage - 1) * filter.ItemsPrPage)
-                 .Take(filter.ItemsPrPage).ToList();
+                     .ThenInclude(c => c.IngredientsType).ToList();
+                     //.Skip((filter.CurrentPage - 1) * filter.ItemsPrPage)
+                 //.Take(filter.ItemsPrPage).ToList();
         }
 
         public MainFood UpdateMainFood(MainFood foodUpdate)

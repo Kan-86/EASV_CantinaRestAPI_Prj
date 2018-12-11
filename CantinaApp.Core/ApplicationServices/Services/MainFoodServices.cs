@@ -54,7 +54,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
            return _mainFoodRepo.ReadByIdIncludeRecipAlrg(id);
         }
 
-        public List<MainFood> GetFilteredMainFood(Filter filter)
+        public List<MainFood> GetFilteredMainFood(/*Filter filter*/)
         {/*
             if (filter.CurrentPage < 0 || filter.ItemsPrPage < 0)
             {

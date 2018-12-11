@@ -20,6 +20,6 @@ namespace CantinaApp.Core.ApplicationServices
 
         MainFood UpdateMainFood(MainFood mainFoodUpdate);
 
-        List<MainFood> GetFilteredMainFood(Filter filter);
+        List<MainFood> GetFilteredMainFood(/*Filter filter*/);
     }
 }

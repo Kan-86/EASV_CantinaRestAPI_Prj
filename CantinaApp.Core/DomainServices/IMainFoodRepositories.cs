@@ -10,7 +10,7 @@ namespace CantinaApp.Core.DomainServices
     {
         MainFood GetMainFoodByID(int id);
 
-        IEnumerable<MainFood> ReadMainFood(Filter filter = null);
+        IEnumerable<MainFood> ReadMainFood(/*Filter filter = null*/);
 
         MainFood CreateMainFood(MainFood mainFood);
 
