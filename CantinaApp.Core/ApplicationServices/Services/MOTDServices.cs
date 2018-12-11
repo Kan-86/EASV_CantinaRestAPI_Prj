@@ -29,7 +29,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
         {
             if (id < 1)
             {
-                throw new InvalidOperationException("ID requires to be greater than 0.");
+                throw new ArgumentException("ID requires to be greater than 0.");
             }
             return _MOTDRepo.DeleteMOTD(id);
         }
@@ -43,7 +43,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
         {
             if (id < 1)
             {
-                throw new InvalidOperationException("ID requires to be greater than 0.");
+                throw new ArgumentException("ID requires to be greater than 0.");
             }
             return _MOTDRepo.ReadMOTD().ToList().FirstOrDefault(motd => motd.Id == id);
         }

@@ -1,6 +1,7 @@
 ﻿using CantinaApp.Core.DomainServices;
 using CantinaApp.Core.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -103,5 +104,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
                     .Where(c => c.FoodDate.Date == date.Date);
                     
         }
+
+        
     }
 }

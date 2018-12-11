@@ -1,4 +1,5 @@
 ﻿using CantinaApp.Core.Entity.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace CantinaApp.Core.ApplicationServices

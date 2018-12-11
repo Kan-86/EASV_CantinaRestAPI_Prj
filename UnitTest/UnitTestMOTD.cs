@@ -50,7 +50,7 @@ namespace UnitTest
             int id = 0;
             Exception ex = Assert.ThrowsException<ArgumentException>(() =>
                 motdService.DeleteMOTD(id));
-            Assert.AreEqual("You need to have an higher id than 0", ex.Message);
+            Assert.AreEqual("ID requires to be greater than 0.", ex.Message);
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace UnitTest
             int id = 0;
             Exception ex = Assert.ThrowsException<ArgumentException>(() =>
                 motdService.GetMOTDById(id));
-            Assert.AreEqual("You need to have an higher id than 0", ex.Message);
+            Assert.AreEqual("ID requires to be greater than 0.", ex.Message);
         }
 
         [TestMethod]

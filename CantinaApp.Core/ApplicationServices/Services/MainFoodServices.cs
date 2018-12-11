@@ -48,6 +48,11 @@ namespace CantinaApp.Core.ApplicationServices.Services
             return _mainFoodRepo.ReadByIdIncludeRecipAlrg(id);
         }
 
+        public List<MainFood> GetFilteredMainFood(Filter filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<MainFood> GetMainFood()
         {
             return _mainFoodRepo.ReadMainFood();
