@@ -152,9 +152,8 @@ namespace EASV_Cantina
                     ctx.Database.EnsureCreated();
                     DBInitializer.SeedDb(ctx);
                 }
-
-
             }
+
             else
             {
                 using (var scope = app.ApplicationServices.CreateScope())
@@ -163,10 +162,10 @@ namespace EASV_Cantina
                     var services = scope.ServiceProvider;
                     var dbContext = services.GetService<CantinaAppContext>();
                     dbContext.Database.EnsureCreated();
-                //    var dbInitializer = services.GetService<IDBInitializer>();
-                //    dbContext.Database.EnsureCreated();
-                //    dbInitializer.SeedDb(dbContext);
-
+                    var dbInitializer = services.GetService<IDBInitializer>();
+                    dbContext.Database.EnsureCreated();
+                    dbInitializer.SeedDb(dbContext);
+                    DBInitializer.SeedDb(dbContext);
                 }
                 app.UseHsts();
             }
