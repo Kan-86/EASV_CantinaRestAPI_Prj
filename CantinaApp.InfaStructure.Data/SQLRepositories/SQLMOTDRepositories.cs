@@ -1,10 +1,8 @@
 ﻿using CantinaApp.Core.DomainServices;
 using CantinaApp.Core.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CantinaApp.InfaStructure.Data.SQLRepositories
 {
@@ -33,12 +31,6 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             return MOTDDeleted;
         }
 
-        public MOTD GetMOTDById(int id)
-        {
-            return _ctx.MOTD.FirstOrDefault(m => m.Id == id);
-
-        }
-
         public IEnumerable<MOTD> ReadMOTD()
         {
             return _ctx.MOTD;
@@ -47,7 +39,6 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         public MOTD UpdateMOTD(MOTD motdUpdate)
         {
             _ctx.Attach(motdUpdate).State = EntityState.Modified;
-           
             _ctx.SaveChanges();
             return motdUpdate;
         }

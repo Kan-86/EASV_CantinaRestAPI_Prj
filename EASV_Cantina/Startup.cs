@@ -100,7 +100,7 @@ namespace EASV_Cantina
             services.AddScoped<IMOTDRepositories, SQLMOTDRepositories>();
             services.AddScoped<IMOTDServices, MOTDServices>();
 
-            services.AddScoped<IUserRepositories<Users>, SQLUserRepositories>();
+            services.AddScoped<IUserRepositories, SQLUserRepositories>();
             services.AddScoped<IUsersServices, UsersServices>();
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -115,7 +115,7 @@ namespace EASV_Cantina
                 options.SerializerSettings.ContractResolver =
                 new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                options.SerializerSettings.MaxDepth = 1;
+                options.SerializerSettings.MaxDepth = 2;
 
             });
 

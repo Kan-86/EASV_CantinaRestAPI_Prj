@@ -9,8 +9,6 @@ namespace CantinaApp.Core.DomainServices
 
         MOTD CreateMOTD(MOTD motd);
 
-        MOTD GetMOTDById(int id);
-
         MOTD DeleteMOTD(int id);
         
         MOTD UpdateMOTD(MOTD motdUpdate);

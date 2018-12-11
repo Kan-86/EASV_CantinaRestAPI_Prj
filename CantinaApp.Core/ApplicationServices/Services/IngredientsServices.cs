@@ -18,6 +18,10 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public Ingredients AddIngredient(Ingredients ingredient)
         {
+            if (string.IsNullOrEmpty(ingredient.IngredientName))
+            {
+                throw new ArgumentException("The ingredient needs a name.");
+            }
             return _ingredientsRepo.CreateIngredient(ingredient);
         }
 
@@ -25,7 +29,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
         {
             if (id < 1)
             {
-                throw new InvalidOperationException("ID requires to be greater than 0.");
+                throw new ArgumentException("ID requires to be greater than 0.");
             }
             return _ingredientsRepo.DeleteIngredient(id);
         }
@@ -34,7 +38,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
         {
             if (id < 1)
             {
-                throw new InvalidOperationException("ID requires to be greater than 0.");
+                throw new ArgumentException("ID requires to be greater than 0.");
             }
             return _ingredientsRepo.ReadByIdIncludeAllergens(id);
         }

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CantinaApp.InfaStructure.Data.SQLRepositories
 {
-    public class SQLUserRepositories : IUserRepositories<Users>
+    public class SQLUserRepositories : IUserRepositories
     {
 
         private readonly CantinaAppContext _ctx;
@@ -39,19 +39,16 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             return userToDelete;
         }
 
-        public Users GetUserByID(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Users> ReadAllUsers()
         {
-            throw new NotImplementedException();
+            return _ctx.UserFromCantine;
         }
 
         public Users UpdateUser(Users userUpdate)
         {
-            throw new NotImplementedException();
+            _ctx.Attach(userUpdate).State = EntityState.Modified;
+            _ctx.SaveChanges();
+            return userUpdate;
         }
     }
 }

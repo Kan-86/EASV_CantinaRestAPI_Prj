@@ -24,7 +24,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
         {
             if (string.IsNullOrEmpty(mainFood.MainFoodName))
             {
-                throw new InvalidOperationException("Main Food needs a name.");
+                throw new ArgumentException("Main Food needs a name.");
             }
             return _mainFoodRepo.CreateMainFood(mainFood);
         }
@@ -33,7 +33,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
         {
             if (id <= 0)
             {
-                throw new InvalidOperationException("ID requires to be greater than 0.");
+                throw new ArgumentException("ID requires to be greater than 0.");
             }
             return _mainFoodRepo.DeleteMainFood(id);
         }
@@ -42,7 +42,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
         {
             if (id <= 0)
             {
-                throw new InvalidOperationException("ID requires to be greater than 0.");
+                throw new ArgumentException("ID requires to be greater than 0.");
             }
 
             return _mainFoodRepo.ReadByIdIncludeRecipAlrg(id);
@@ -55,6 +55,10 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public MainFood UpdateMainFood(MainFood mainFoodUpdate)
         {
+            if (mainFoodUpdate.Id < 1)
+            {
+                throw new ArgumentException("You need to have an higher id than 0");
+            }
             return _mainFoodRepo.UpdateMainFood(mainFoodUpdate);
         }
     }

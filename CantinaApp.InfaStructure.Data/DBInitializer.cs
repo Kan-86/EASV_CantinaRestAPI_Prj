@@ -39,6 +39,16 @@ namespace CantinaApp.InfaStructure.Data
                     IsAdmin = false
                 }
             };
+            var user1 = ctx.UserFromCantine.Add(new Users()
+            {
+                Username = "Username 1"
+
+            }).Entity;
+
+            var user2 = ctx.UserFromCantine.Add(new Users()
+            {
+                Username = "username 2"
+            }).Entity;
 
             var ingr = ctx.Ingredients.Add(new Ingredients()
             {
