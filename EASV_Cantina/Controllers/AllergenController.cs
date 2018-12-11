@@ -34,35 +34,6 @@ namespace EASV_CantinaRestAPI.Controllers
             return _AllergenService.FindAllergenId(id);
         }
 
-        // POST api/<controller>
-        [HttpPost]
-        public ActionResult<Allergens> Post([FromBody]Allergens all)
-        {
-            try
-            {
-                return Ok(_AllergenService.AddAllergen(all));
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
-
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public ActionResult<Allergens> Put(int id, [FromBody]Allergens all)
-        {
-            try
-            {
-                var entity = _AllergenService.UpdateAllergen(all);
-                return entity;
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
-
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
         public ActionResult<Allergens> Delete(int id)

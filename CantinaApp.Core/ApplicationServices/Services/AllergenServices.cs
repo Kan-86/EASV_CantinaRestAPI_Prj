@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CantinaApp.Core.DomainServices;
 using CantinaApp.Core.Entity.Entities;
@@ -18,7 +19,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
         {
             if (allergen.AllergenType == null)
             {
-                throw new InvalidOperationException("You need to add a name for the allergen");
+                throw new ArgumentException("You need to add a name for the allergen");
             }
             
             return _allergensRepo.CreateAllergen(allergen);
