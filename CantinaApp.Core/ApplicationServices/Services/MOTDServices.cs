@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CantinaApp.Core.DomainServices;
 using CantinaApp.Core.Entity.Entities;
 
@@ -33,7 +32,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
             }
             return _MOTDRepo.DeleteMOTD(id);
         }
-        
+
         public List<MOTD> GetMOTDs()
         {
             return _MOTDRepo.ReadMOTD().ToList();
@@ -54,7 +53,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
             {
                 throw new ArgumentException("You need to have an higher id than 0");
             }
-            return _MOTDRepo.UpdateMOTD(motdUpdate); 
+            return _MOTDRepo.UpdateMOTD(motdUpdate);
 
         }
     }
