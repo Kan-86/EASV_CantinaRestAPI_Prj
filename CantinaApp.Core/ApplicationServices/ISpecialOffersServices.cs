@@ -16,5 +16,7 @@ namespace CantinaApp.Core.ApplicationServices
         SpecialOffers DeleteSpecialOffer(int id);
 
         SpecialOffers UpdateSpecialOffer(SpecialOffers specialOffers);
+
+        IEnumerable<SpecialOffers> ReadTodaySpecielOffers(DateTime date);
     }
 }

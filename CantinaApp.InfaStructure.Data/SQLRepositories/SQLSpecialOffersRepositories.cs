@@ -54,5 +54,13 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             _ctx.SaveChanges();
             return specialDelete;
         }
+
+        public IEnumerable<SpecialOffers> ReadTodaySpecielOffers(DateTime date)
+        {
+            
+                return _ctx.SpecialOffers   
+                        .Where(c => c.OffersDate.Date == date.Date);
+            
+        }
     }
 }

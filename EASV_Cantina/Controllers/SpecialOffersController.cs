@@ -19,17 +19,27 @@ namespace EASV_CantinaRestAPI.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public ActionResult<IEnumerable<SpecialOffers>> Get()
+        public ActionResult<IEnumerable<SpecialOffers>> Get([FromQuery]DateTime date)
         {
             try
             {
-                return Ok(_spclService.GetSpecialOffers());
+                if (date.Date == DateTime.Now.Date)
+                {
+                    return Ok(_spclService.ReadTodaySpecielOffers(date));
+                }
+                else
+                {
+                    return Ok(_spclService.GetSpecialOffers());
+                }
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
         }
+        
+
+        
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
@@ -44,6 +54,8 @@ namespace EASV_CantinaRestAPI.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
 
         // POST api/<controller>
         [HttpPost]

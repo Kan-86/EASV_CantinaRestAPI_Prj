@@ -70,5 +70,10 @@ namespace CantinaApp.Core.ApplicationServices.Services
             }
             return _sOffersRepo.UpdateSpecialOffers(specialOffers);
         }
+
+        public IEnumerable<SpecialOffers> ReadTodaySpecielOffers(DateTime date)
+        {
+            return _sOffersRepo.ReadTodaySpecielOffers(date);
+        }
     }
 }
