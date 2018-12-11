@@ -56,7 +56,7 @@ namespace CantinaApp.InfaStructure.Data
             var mainFood1 = ctx.MainFood.Add(new MainFood()
             {
                 MainFoodName = "PineAppleCoffeeSandwitch",
-                FoodDate = DateTime.Today
+                FoodDate = new DateTime(2017,12,12)
             }).Entity;
 
 

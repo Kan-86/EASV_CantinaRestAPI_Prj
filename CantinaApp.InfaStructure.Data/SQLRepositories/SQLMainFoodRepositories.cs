@@ -110,5 +110,14 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
                     .ThenInclude(c => c.IngredientsType)
                     .FirstOrDefault(c => c.Id == id);
         }
+
+        public IEnumerable<MainFood> ReadTodayMenues(DateTime date)
+        {
+            return _ctx.MainFood
+                    .Include(c => c.RecipeLines)
+                    .ThenInclude(c => c.IngredientsType)
+                    .Where(c => c.FoodDate.Date == date.Date);
+                    
+        }
     }
 }

@@ -22,6 +22,8 @@ namespace CantinaApp.Core.DomainServices
 
         MainFood ReadByIdIncludeRecipAlrg(int id);
 
+        IEnumerable<MainFood> ReadTodayMenues(DateTime date);
+
         int Count();  
     }
 }

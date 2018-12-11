@@ -73,6 +73,11 @@ namespace CantinaApp.Core.ApplicationServices.Services
             return _mainFoodRepo.ReadMainFood();
         }
 
+        public IEnumerable<MainFood> GetTodayFood(DateTime date)
+        {
+            return _mainFoodRepo.ReadTodayMenues(date);
+        }
+
         public MainFood UpdateMainFood(MainFood mainFoodUpdate)
         {
             if (string.IsNullOrEmpty(mainFoodUpdate.MainFoodName))

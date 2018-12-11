@@ -22,11 +22,18 @@ namespace EASV_CantinaRestAPI.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public ActionResult<IEnumerable<MainFood>> Get()
+        public ActionResult<IEnumerable<MainFood>> Get([FromQuery] DateTime date)
         {
+            
             try
-            {
-                return Ok(_mainFoodService.GetMainFood().ToList());
+            { if (date.Date == DateTime.Now.Date)
+                {
+                    return Ok(_mainFoodService.GetTodayFood(date).ToList());
+                }
+                else
+                {
+                    return Ok(_mainFoodService.GetMainFood().ToList());
+                }
             }
             catch (Exception e)
             {
@@ -37,7 +44,7 @@ namespace EASV_CantinaRestAPI.Controllers
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public ActionResult<MainFood> Get(int id)
+        public ActionResult<IEnumerable<MainFood>> Get(int id)
         {
             try
             { 
@@ -50,6 +57,8 @@ namespace EASV_CantinaRestAPI.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+      
 
         // POST api/<controller>
         [HttpPost]

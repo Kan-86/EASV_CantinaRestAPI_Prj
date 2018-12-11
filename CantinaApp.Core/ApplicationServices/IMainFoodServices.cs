@@ -21,5 +21,6 @@ namespace CantinaApp.Core.ApplicationServices
         MainFood UpdateMainFood(MainFood mainFoodUpdate);
 
         List<MainFood> GetFilteredMainFood(Filter filter);
+        IEnumerable<MainFood> GetTodayFood(DateTime date);
     }
 }
