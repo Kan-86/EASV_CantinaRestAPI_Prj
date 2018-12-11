@@ -24,21 +24,14 @@ namespace EASV_CantinaRestAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<MainFood>> Get()
         {
-            try
-            {
-                return Ok(_mainFoodService.GetMainFood().ToList());
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-            
+            return _mainFoodService.GetMainFood().ToList();
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public ActionResult<MainFood> Get(int id)
         {
+<<<<<<< HEAD
             try
             { 
 
@@ -49,50 +42,32 @@ namespace EASV_CantinaRestAPI.Controllers
             {
                 return BadRequest(e.Message);
             }
+=======
+            return _mainFoodService.FindMainFoodIdIncludeRecipAlrg(id);
+>>>>>>> parent of 65e9d16... Merge branch 'Developer' into Kris
         }
 
         // POST api/<controller>
         [HttpPost]
         public ActionResult<MainFood> Post([FromBody]MainFood mFood)
         {
-            try
-            {
-                return Ok( _mainFoodService.AddMainFood(mFood));
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            return _mainFoodService.AddMainFood(mFood);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
         public ActionResult<MainFood> Put(int id, [FromBody]MainFood mFood)
         {
-            try
-            {
-                var entity = _mainFoodService.UpdateMainFood(mFood);
-                entity.MainFoodName = mFood.MainFoodName;
-                return Ok(entity);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            var entity = _mainFoodService.UpdateMainFood(mFood);
+            entity.MainFoodName = mFood.MainFoodName;
+            return entity;
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
         public ActionResult<MainFood> Delete(int id)
         {
-            try
-            {
-                return Ok(_mainFoodService.DeleteMainFood(id));
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            return _mainFoodService.DeleteMainFood(id);
         }
     }
 }

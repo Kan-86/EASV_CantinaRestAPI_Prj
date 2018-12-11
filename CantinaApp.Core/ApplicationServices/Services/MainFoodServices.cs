@@ -75,10 +75,13 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public MainFood UpdateMainFood(MainFood mainFoodUpdate)
         {
+<<<<<<< HEAD
             if (string.IsNullOrEmpty(mainFoodUpdate.MainFoodName))
             {
                 throw new InvalidOperationException("Main Food needs a name.");
             }
+=======
+>>>>>>> parent of 65e9d16... Merge branch 'Developer' into Kris
             return _mainFoodRepo.UpdateMainFood(mainFoodUpdate);
         }
     }
