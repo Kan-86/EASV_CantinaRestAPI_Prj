@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CantinaApp.Core.DomainServices;
 using CantinaApp.Core.Entity.Entities;
 
@@ -26,7 +25,8 @@ namespace CantinaApp.Core.ApplicationServices.Services
             {
                 throw new ArgumentException("You need to have a connection between food and ingredients (RecipeLines)");
             }
-            else{
+            else
+            {
                 foreach (var item in ingredient.RecipeLines)
                 {
                     if (item.IngredientsId < 1)
@@ -90,7 +90,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
                 }
 
             }
-        
+
             return _ingredientsRepo.UpdateIngredient(ingredientUpdate);
         }
     }
