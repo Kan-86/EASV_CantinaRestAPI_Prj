@@ -19,7 +19,7 @@ namespace CantinaApp.InfaStructure.Data
         public static void SeedDb(CantinaAppContext ctx)
         {
 
-            string password = "1234";
+            string password = "4321";
             byte[] passwordHashJoe, passwordSaltJoe, passwordHashAnn, passwordSaltAnn;
             CreatePasswordHash(password, out passwordHashJoe, out passwordSaltJoe);
             CreatePasswordHash(password, out passwordHashAnn, out passwordSaltAnn);
@@ -27,13 +27,13 @@ namespace CantinaApp.InfaStructure.Data
             List<Users> users = new List<Users>
             {
                 new Users {
-                    Username = "fabio",
+                    Username = "kris",
                     PasswordHash = passwordHashJoe,
                     PasswordSalt = passwordSaltJoe,
                     IsAdmin = true
                 },
                 new Users {
-                    Username = "jeppe",
+                    Username = "jacob",
                     PasswordHash = passwordHashAnn,
                     PasswordSalt = passwordSaltAnn,
                     IsAdmin = false
@@ -48,14 +48,14 @@ namespace CantinaApp.InfaStructure.Data
 
             var mainFood = ctx.MainFood.Add(new MainFood()
             {
-                MainFoodName = "SalsaFlamingoHamburger",
+                MainFoodName = "Sams special Kasper Sauce",
                 FoodDate = DateTime.Today
             }).Entity;
 
 
             var mainFood1 = ctx.MainFood.Add(new MainFood()
             {
-                MainFoodName = "PineAppleCoffeeSandwitch",
+                MainFoodName = "Apple coffee Pizza burger",
                 FoodDate = DateTime.Today
             }).Entity;
 
@@ -63,24 +63,24 @@ namespace CantinaApp.InfaStructure.Data
 
             var ingr1 = ctx.Ingredients.Add(new Ingredients()
             {
-                IngredientName = "Jacob and Sams Sauce",
+                IngredientName = "Kasper and Kris Sauce",
 
             }).Entity;
 
             var spcl = ctx.SpecialOffers.Add(new SpecialOffers()
             {
-                SpecialOfferName = "Danish Meatballs",
+                SpecialOfferName = "Swedish Meatballs",
                 OffersDate = DateTime.Today
             }).Entity;
 
             var motd = ctx.MOTD.Add(new MOTD()
             {
-                TipOfTheDay = "One Dane per day, makes problems go away"
+                TipOfTheDay = "One Icelander per day, makes problems go away"
             }).Entity;
 
             var motd1 = ctx.MOTD.Add(new MOTD()
             {
-                TipOfTheDay = "Why do Danes go out when they hear a thunderstorm? Because they think they are being photographed :D"
+                TipOfTheDay = "Why do Swedish go out when they hear a thunderstorm? Because they think they are being photographed :D"
             }).Entity;
 
 
