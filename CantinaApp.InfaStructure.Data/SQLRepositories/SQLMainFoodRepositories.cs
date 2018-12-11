@@ -44,17 +44,6 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             return mainFood;
         }
 
-        public MainFood GetMainFoodByID(int id)
-        {
-            return _ctx.MainFood.FirstOrDefault(m => m.Id == id);
-        }
-
-        public MainFood ReadById(int id)
-        {
-            return _ctx.MainFood
-                .FirstOrDefault(c => c.Id == id);
-        }
-
         public IEnumerable<MainFood> ReadMainFood(/*Filter filter = null*/)
         {
             var query = _ctx.Set<MainFood>();

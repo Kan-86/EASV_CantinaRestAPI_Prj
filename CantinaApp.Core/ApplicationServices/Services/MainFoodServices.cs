@@ -39,11 +39,6 @@ namespace CantinaApp.Core.ApplicationServices.Services
             return _mainFoodRepo.DeleteMainFood(id);
         }
 
-        public MainFood FindMainFoodId(int id)
-        {
-            return _mainFoodRepo.ReadById(id);
-        }
-
         public MainFood FindMainFoodIdIncludeRecipAlrg(int id)
         {
             /*if (_mainFoodRepo.ReadByIdIncludeRecipAlrg(id) == null)
@@ -52,20 +47,6 @@ namespace CantinaApp.Core.ApplicationServices.Services
             }*/
             
            return _mainFoodRepo.ReadByIdIncludeRecipAlrg(id);
-        }
-
-        public List<MainFood> GetFilteredMainFood(/*Filter filter*/)
-        {/*
-            if (filter.CurrentPage < 0 || filter.ItemsPrPage < 0)
-            {
-                throw new InvalidDataException("Current page and Items page must be zero or more");
-            }
-            if ((filter.CurrentPage - 1 * filter.ItemsPrPage) >= _mainFoodRepo.Count())
-            {
-                throw new InvalidDataException("Index out of bounds, Curret page is too high");
-            }
-            return _mainFoodRepo.ReadMainFood(filter).ToList();*/
-            throw new Exception();
         }
 
         public IEnumerable<MainFood> GetMainFood()

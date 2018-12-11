@@ -14,12 +14,8 @@ namespace CantinaApp.Core.ApplicationServices
 
         MainFood DeleteMainFood(int id);
 
-        MainFood FindMainFoodId(int id);
-
         MainFood FindMainFoodIdIncludeRecipAlrg(int id);
 
         MainFood UpdateMainFood(MainFood mainFoodUpdate);
-
-        List<MainFood> GetFilteredMainFood(/*Filter filter*/);
     }
 }
