@@ -8,13 +8,10 @@ namespace CantinaApp.Core.ApplicationServices
     public interface IAllergenServices
     {
         List<Allergens> GetAllergens();
-
-        Allergens AddAllergen(Allergens allergen);
-
+        
         Allergens DeleteAllergen(int id);
 
         Allergens FindAllergenId(int id);
 
-        Allergens UpdateAllergen(Allergens allergenUpdate);
     }
 }

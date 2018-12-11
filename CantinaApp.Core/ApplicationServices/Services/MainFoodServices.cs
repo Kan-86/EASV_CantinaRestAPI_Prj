@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using CantinaApp.Core.DomainServices;
-using CantinaApp.Core.DomainServices.List;
 using CantinaApp.Core.Entity.Entities;
 
 namespace CantinaApp.Core.ApplicationServices.Services
@@ -13,59 +9,43 @@ namespace CantinaApp.Core.ApplicationServices.Services
     {
         readonly IMainFoodRepositories _mainFoodRepo;
         readonly IIngredientsRepositories _ingredientsRepo;
+        private readonly IAllergensRepositories _allergensRepo;
 
-        public MainFoodServices(IMainFoodRepositories mainFoodRepo, 
-            IIngredientsRepositories ingredientsRepo)
+        public MainFoodServices(IMainFoodRepositories mainFoodRepo,
+            IIngredientsRepositories ingredientsRepo,
+            IAllergensRepositories allergensRepo)
         {
             _mainFoodRepo = mainFoodRepo;
             _ingredientsRepo = ingredientsRepo;
+            _allergensRepo = allergensRepo;
         }
 
         public MainFood AddMainFood(MainFood mainFood)
         {
             if (string.IsNullOrEmpty(mainFood.MainFoodName))
             {
-                throw new InvalidOperationException("Main Food needs a name.");
+                throw new ArgumentException("Main Food needs a name.");
             }
             return _mainFoodRepo.CreateMainFood(mainFood);
         }
 
         public MainFood DeleteMainFood(int id)
         {
-            if (id < 1)
+            if (id <= 0)
             {
-                throw new InvalidOperationException("Main Food Id needs to be larger than 1.");
+                throw new ArgumentException("ID requires to be greater than 0.");
             }
             return _mainFoodRepo.DeleteMainFood(id);
         }
 
-        public MainFood FindMainFoodId(int id)
-        {
-            return _mainFoodRepo.ReadById(id);
-        }
-
         public MainFood FindMainFoodIdIncludeRecipAlrg(int id)
         {
-            /*if (_mainFoodRepo.ReadByIdIncludeRecipAlrg(id) == null)
+            if (id <= 0)
             {
-                throw new ExecutionEngineException("Main food requires a recipe");
-            }*/
-            
-           return _mainFoodRepo.ReadByIdIncludeRecipAlrg(id);
-        }
+                throw new ArgumentException("ID requires to be greater than 0.");
+            }
 
-        public List<MainFood> GetFilteredMainFood(Filter filter)
-        {/*
-            if (filter.CurrentPage < 0 || filter.ItemsPrPage < 0)
-            {
-                throw new InvalidDataException("Current page and Items page must be zero or more");
-            }
-            if ((filter.CurrentPage - 1 * filter.ItemsPrPage) >= _mainFoodRepo.Count())
-            {
-                throw new InvalidDataException("Index out of bounds, Curret page is too high");
-            }
-            return _mainFoodRepo.ReadMainFood(filter).ToList();*/
-            throw new Exception();
+            return _mainFoodRepo.ReadByIdIncludeRecipAlrg(id);
         }
 
         public IEnumerable<MainFood> GetMainFood()
@@ -82,7 +62,11 @@ namespace CantinaApp.Core.ApplicationServices.Services
         {
             if (string.IsNullOrEmpty(mainFoodUpdate.MainFoodName))
             {
-                throw new InvalidOperationException("Main Food needs a name.");
+                throw new ArgumentException("Main Food needs a name.");
+            }
+            else if (mainFoodUpdate.Id < 1)
+            {
+                throw new ArgumentException("You need to have an higher id than 0");
             }
             return _mainFoodRepo.UpdateMainFood(mainFoodUpdate);
         }

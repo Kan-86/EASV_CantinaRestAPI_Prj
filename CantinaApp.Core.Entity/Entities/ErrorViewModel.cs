@@ -1,5 +1,3 @@
-using System;
-
 namespace EASV_Cantina.Models
 {
     public class ErrorViewModel

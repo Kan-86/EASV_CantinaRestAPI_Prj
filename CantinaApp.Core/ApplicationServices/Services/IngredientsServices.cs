@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CantinaApp.Core.DomainServices;
 using CantinaApp.Core.Entity.Entities;
 
@@ -20,25 +19,25 @@ namespace CantinaApp.Core.ApplicationServices.Services
         {
             if (ingredient.IngredientName == null)
             {
-                throw new InvalidOperationException("Ingredient need a name");
+                throw new ArgumentException("Ingredient needs a name");
             }
             if (ingredient.RecipeLines == null)
             {
-                throw new InvalidOperationException("You need to have \"RecipsLines\" Connection between food and ingredients ");
+                throw new ArgumentException("You need to have a connection between food and ingredients (RecipeLines)");
             }
-            else{
+            else
+            {
                 foreach (var item in ingredient.RecipeLines)
                 {
                     if (item.IngredientsId < 1)
                     {
-                        throw new InvalidOperationException("RecipLines IngredientsId need to be higher than 1");
+                        throw new ArgumentException("RecipLines IngredientsId need to be higher than 1");
                     }
                     if (item.MainFoodId < 1)
                     {
-                        throw new InvalidOperationException("RecipLines IngredientsId need to be higher than 1");
+                        throw new ArgumentException("RecipLines IngredientsId need to be higher than 1");
                     }
                 }
-
             }
             return _ingredientsRepo.CreateIngredient(ingredient);
         }
@@ -47,7 +46,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
         {
             if (id < 1)
             {
-                throw new InvalidOperationException("id need to higher than 1");
+                throw new ArgumentException("ID requires to be greater than 0.");
             }
             return _ingredientsRepo.DeleteIngredient(id);
         }
@@ -56,7 +55,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
         {
             if (id < 1)
             {
-                throw new InvalidOperationException("id need to higher than 1");
+                throw new ArgumentException("ID requires to be greater than 0.");
             }
             return _ingredientsRepo.ReadByIdIncludeAllergens(id);
         }
@@ -91,7 +90,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
                 }
 
             }
-        
+
             return _ingredientsRepo.UpdateIngredient(ingredientUpdate);
         }
     }

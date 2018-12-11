@@ -1,11 +1,8 @@
 ﻿using CantinaApp.Core.DomainServices;
-using CantinaApp.Core.DomainServices.List;
 using CantinaApp.Core.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CantinaApp.InfaStructure.Data.SQLRepositories
 {
@@ -44,31 +41,18 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             return mainFood;
         }
 
-        public MainFood GetMainFoodByID(int id)
-        {
-            return _ctx.MainFood.FirstOrDefault(m => m.Id == id);
-        }
-
-        public MainFood ReadById(int id)
-        {
-            return _ctx.MainFood
-                .FirstOrDefault(c => c.Id == id);
-        }
-
         public IEnumerable<MainFood> ReadMainFood(Filter filter = null)
         {
             var query = _ctx.Set<MainFood>();
 
-           
+
             if (filter == null)
             {
+
                 return _ctx.MainFood;
 
             }
-
             return _ctx.MainFood
-                     .Include(c => c.RecipeLines)
-                     .ThenInclude(c => c.IngredientsType)
                      .Skip((filter.CurrentPage - 1) * filter.ItemsPrPage)
                  .Take(filter.ItemsPrPage).ToList();
         }

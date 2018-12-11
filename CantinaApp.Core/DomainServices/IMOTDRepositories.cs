@@ -1,7 +1,5 @@
 ﻿using CantinaApp.Core.Entity.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CantinaApp.Core.DomainServices
 {

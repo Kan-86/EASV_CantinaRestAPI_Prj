@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using CantinaApp.Core.DomainServices;
 using CantinaApp.Core.Entity.Models;
@@ -8,41 +9,48 @@ namespace CantinaApp.Core.ApplicationServices.Services
 {
     public class UsersServices : IUsersServices
     {
-        readonly IUserRepositories<Users> _userRepo;
+        readonly IUserRepositories _userRepo;
 
-        public UsersServices(IUserRepositories<Users> userRepo)
+        public UsersServices(IUserRepositories userRepo)
         {
             _userRepo = userRepo;
         }
 
-        public Users AddUsers(Users motd)
+        public Users AddUsers(Users user)
         {
-            throw new NotImplementedException();
+            return _userRepo.CreateUsers(user);
         }
 
-        public Users DeleteMOTD(int id)
+        public Users DeleteUser(int id)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+            {
+                throw new InvalidOperationException("ID requires to be greater than 0.");
+            }
+            return _userRepo.DeleteUsers(id);
         }
 
         public Users FindUsersId(int id)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+            {
+                throw new InvalidOperationException("ID requires to be greater than 0.");
+            }
+            return _userRepo.ReadAllUsers().ToList().FirstOrDefault(motd => motd.Id == id);
         }
 
         public List<Users> GetUsers()
         {
-            throw new NotImplementedException();
-        }
-
-        public Users GetUsersInstance()
-        {
-            throw new NotImplementedException();
+            return _userRepo.ReadAllUsers().ToList();
         }
 
         public Users UpdateUsers(Users userUpdate)
         {
-            throw new NotImplementedException();
+            if (userUpdate.Id < 1)
+            {
+                throw new ArgumentException("You need to have an higher id than 0");
+            }
+            return _userRepo.UpdateUser(userUpdate);
         }
     }
 }

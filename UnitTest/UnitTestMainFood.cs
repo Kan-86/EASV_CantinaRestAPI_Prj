@@ -21,10 +21,11 @@ namespace UnitTest
         public UnitTestMainFood()
         {
             mainFoodRepo = new Mock<IMainFoodRepositories>();
-            //allergensRepo = new Mock<IAllergensRepositories>();
+            allergensRepo = new Mock<IAllergensRepositories>();
             IngredientsRepo = new Mock<IIngredientsRepositories>();
             mainFoodService = new MainFoodServices(mainFoodRepo.Object,
-                IngredientsRepo.Object
+                IngredientsRepo.Object,
+                allergensRepo.Object
                 );
         }
        /*   Check this   */

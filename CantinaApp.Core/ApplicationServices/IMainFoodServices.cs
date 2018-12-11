@@ -1,8 +1,5 @@
-﻿using CantinaApp.Core.DomainServices.List;
-using CantinaApp.Core.Entity.Entities;
-using System;
+﻿using CantinaApp.Core.Entity.Entities;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CantinaApp.Core.ApplicationServices
 {
@@ -14,13 +11,11 @@ namespace CantinaApp.Core.ApplicationServices
 
         MainFood DeleteMainFood(int id);
 
-        MainFood FindMainFoodId(int id);
-
         MainFood FindMainFoodIdIncludeRecipAlrg(int id);
 
         MainFood UpdateMainFood(MainFood mainFoodUpdate);
-
         List<MainFood> GetFilteredMainFood(Filter filter);
         IEnumerable<MainFood> GetTodayFood(DateTime date);
+
     }
 }
