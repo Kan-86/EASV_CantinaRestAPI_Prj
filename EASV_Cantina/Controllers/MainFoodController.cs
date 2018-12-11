@@ -31,7 +31,6 @@ namespace EASV_CantinaRestAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<MainFood> Get(int id)
         {
-<<<<<<< HEAD
             try
             { 
 
@@ -42,9 +41,7 @@ namespace EASV_CantinaRestAPI.Controllers
             {
                 return BadRequest(e.Message);
             }
-=======
             return _mainFoodService.FindMainFoodIdIncludeRecipAlrg(id);
->>>>>>> parent of 65e9d16... Merge branch 'Developer' into Kris
         }
 
         // POST api/<controller>
