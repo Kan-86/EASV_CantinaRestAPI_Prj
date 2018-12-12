@@ -20,7 +20,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public void Add(Users entity)
         {
-            _ctx.UserFromCantine.Add(entity);
+            _ctx.User.Add(entity);
             _ctx.SaveChanges();
         }
 
@@ -33,15 +33,15 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public Users DeleteUsers(int id)
         {
-            var userToDelete = _ctx.UserFromCantine.ToList().FirstOrDefault(b => b.Id == id);
-            _ctx.UserFromCantine.Remove(userToDelete);
+            var userToDelete = _ctx.User.ToList().FirstOrDefault(b => b.Id == id);
+            _ctx.User.Remove(userToDelete);
             _ctx.SaveChanges();
             return userToDelete;
         }
 
         public IEnumerable<Users> ReadAllUsers()
         {
-            return _ctx.UserFromCantine;
+            return _ctx.User;
         }
 
         public Users UpdateUser(Users userUpdate)
