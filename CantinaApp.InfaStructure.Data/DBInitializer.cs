@@ -38,13 +38,13 @@ namespace CantinaApp.InfaStructure.Data
                     IsAdmin = false
                 }
             };
-            var user1 = ctx.User.Add(new Users()
+            var user1 = ctx.Users.Add(new Users()
             {
                 Username = "Username 1"
 
             }).Entity;
 
-            var user2 = ctx.User.Add(new Users()
+            var user2 = ctx.Users.Add(new Users()
             {
                 Username = "username 2"
             }).Entity;
@@ -101,7 +101,7 @@ namespace CantinaApp.InfaStructure.Data
             ctx.Ingredients.AddRange(ingr1);
             ctx.MainFood.AddRange(mainFood);
             ctx.MainFood.AddRange(mainFood1);
-            ctx.User.AddRange(users);
+            ctx.Users.AddRange(users);
             ctx.SaveChanges();
         }
 
