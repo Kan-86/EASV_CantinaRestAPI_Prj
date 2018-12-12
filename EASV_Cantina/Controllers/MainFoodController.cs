@@ -54,7 +54,6 @@ namespace EASV_CantinaRestAPI.Controllers
             {
                 return BadRequest(e.Message);
             }
-            return _mainFoodService.FindMainFoodIdIncludeRecipAlrg(id);
         }
 
       
