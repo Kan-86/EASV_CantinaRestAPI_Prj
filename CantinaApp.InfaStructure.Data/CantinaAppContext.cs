@@ -50,7 +50,7 @@ namespace CantinaApp.InfaStructure.Data
                 .HasForeignKey(rl => rl.AllergenID);
         }
         //Tables
-        public DbSet<User> UserFromCantine { get; set; }
+        public DbSet<Users> User { get; set; }
         public DbSet<MainFood> MainFood { get; set; }
         public DbSet<Ingredients> Ingredients { get; set; }
         public DbSet<RecipeLine> RecipeLine { get; set; }
