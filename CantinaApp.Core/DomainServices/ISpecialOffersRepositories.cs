@@ -18,5 +18,7 @@ namespace CantinaApp.Core.DomainServices
         SpecialOffers UpdateSpecialOffers(SpecialOffers specialOffers);
 
         SpecialOffers ReadByIdIncludeIngr(int id);
+
+        IEnumerable<SpecialOffers> ReadTodaySpecielOffers(DateTime date);
     }
 }

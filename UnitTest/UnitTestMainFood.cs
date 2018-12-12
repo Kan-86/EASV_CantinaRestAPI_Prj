@@ -12,7 +12,8 @@ namespace UnitTest
 {
     [TestClass]
    public class UnitTestMainFood
-    {/*
+    {
+    /*
         Mock<IMainFoodRepositories> mainFoodRepo;
         Mock<IAllergensRepositories> allergensRepo;
         Mock<IIngredientsRepositories> IngredientsRepo;
@@ -25,7 +26,10 @@ namespace UnitTest
             IngredientsRepo = new Mock<IIngredientsRepositories>();
             mainFoodService = new MainFoodServices(mainFoodRepo.Object,
                 IngredientsRepo.Object,
-                allergensRepo.Object);
+
+                allergensRepo.Object
+                );
+
         }
 
         [TestMethod]

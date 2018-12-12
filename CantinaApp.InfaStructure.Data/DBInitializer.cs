@@ -3,7 +3,6 @@ using CantinaApp.Core.Entity.Models;
 using EASV_CantinaRestAPI.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CantinaApp.InfaStructure.Data
 {
@@ -39,6 +38,16 @@ namespace CantinaApp.InfaStructure.Data
                     IsAdmin = false
                 }
             };
+            var user1 = ctx.UserFromCantine.Add(new Users()
+            {
+                Username = "Username 1"
+
+            }).Entity;
+
+            var user2 = ctx.UserFromCantine.Add(new Users()
+            {
+                Username = "username 2"
+            }).Entity;
 
             var ingr = ctx.Ingredients.Add(new Ingredients()
             {
@@ -55,8 +64,9 @@ namespace CantinaApp.InfaStructure.Data
 
             var mainFood1 = ctx.MainFood.Add(new MainFood()
             {
-                MainFoodName = "Apple coffee Pizza burger",
-                FoodDate = DateTime.Today
+
+                MainFoodName = "PineAppleCoffeeSandwitch",
+                FoodDate = new DateTime(2017,12,12)
             }).Entity;
 
 
@@ -91,7 +101,7 @@ namespace CantinaApp.InfaStructure.Data
             ctx.Ingredients.AddRange(ingr1);
             ctx.MainFood.AddRange(mainFood);
             ctx.MainFood.AddRange(mainFood1);
-            ctx.User.AddRange(users);
+            ctx.UserFromCantine.AddRange(users);
             ctx.SaveChanges();
         }
 

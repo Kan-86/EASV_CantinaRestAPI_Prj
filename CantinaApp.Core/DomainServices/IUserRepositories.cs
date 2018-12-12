@@ -1,15 +1,16 @@
-﻿using System;
+﻿using CantinaApp.Core.Entity.Models;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CantinaApp.Core.DomainServices
 {
-    public interface IUserRepositories<T>
+    public interface IUserRepositories
     {
-        IEnumerable<T> GetAll();
-        T Get(long id);
-        void Add(T entity);
-        void Edit(T entity);
-        void Remove(long id);
+        IEnumerable<Users> ReadAllUsers();
+
+        Users CreateUsers(Users user);
+
+        Users DeleteUsers(int id);
+
+        Users UpdateUser(Users userUpdate);
     }
 }

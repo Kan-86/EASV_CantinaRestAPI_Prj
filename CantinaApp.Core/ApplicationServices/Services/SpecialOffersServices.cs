@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CantinaApp.Core.DomainServices;
 using CantinaApp.Core.Entity.Entities;
 
@@ -70,6 +69,11 @@ namespace CantinaApp.Core.ApplicationServices.Services
                 throw new ArgumentException("Id need to be higher than 0");
             }
             return _sOffersRepo.UpdateSpecialOffers(specialOffers);
+        }
+
+        public IEnumerable<SpecialOffers> ReadTodaySpecielOffers(DateTime date)
+        {
+            return _sOffersRepo.ReadTodaySpecielOffers(date);
         }
     }
 }

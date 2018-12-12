@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CantinaApp.Core.ApplicationServices;
 using CantinaApp.Core.Entity.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EASV_CantinaRestAPI.Controllers
@@ -22,10 +19,28 @@ namespace EASV_CantinaRestAPI.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public ActionResult<IEnumerable<SpecialOffers>> Get()
+        public ActionResult<IEnumerable<SpecialOffers>> Get([FromQuery]DateTime date)
         {
-            return _spclService.GetSpecialOffers();
+
+            try
+            {
+                if (date.Date == DateTime.Now.Date)
+                {
+                    return Ok(_spclService.ReadTodaySpecielOffers(date));
+                }
+                else
+                {
+                    return Ok(_spclService.GetSpecialOffers());
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
+        
+
+        
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
@@ -33,6 +48,8 @@ namespace EASV_CantinaRestAPI.Controllers
         {
             return _spclService.GetSpecialOffersById(id);
         }
+
+
 
         // POST api/<controller>
         [HttpPost]

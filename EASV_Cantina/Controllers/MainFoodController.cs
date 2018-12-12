@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using CantinaApp.Core.ApplicationServices;
-using CantinaApp.Core.DomainServices.List;
 using CantinaApp.Core.Entity.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EASV_CantinaRestAPI.Controllers
@@ -22,14 +19,30 @@ namespace EASV_CantinaRestAPI.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public ActionResult<IEnumerable<MainFood>> Get()
+        public ActionResult<IEnumerable<MainFood>> Get([FromQuery] DateTime date)
         {
-            return _mainFoodService.GetMainFood().ToList();
+
+            
+            try
+            { if (date.Date == DateTime.Now.Date)
+                {
+                    return Ok(_mainFoodService.GetTodayFood(date).ToList());
+                }
+                else
+                {
+                    return Ok(_mainFoodService.GetMainFood().ToList());
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public ActionResult<MainFood> Get(int id)
+        public ActionResult<IEnumerable<MainFood>> Get(int id)
         {
             try
             { 
@@ -43,6 +56,8 @@ namespace EASV_CantinaRestAPI.Controllers
             }
             return _mainFoodService.FindMainFoodIdIncludeRecipAlrg(id);
         }
+
+      
 
         // POST api/<controller>
         [HttpPost]

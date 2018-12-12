@@ -8,43 +8,47 @@ using System.Text;
 
 namespace CantinaApp.InfaStructure.Data.SQLRepositories
 {
-    public class SQLUserRepositories : IUserRepositories<Users>
+    public class SQLUserRepositories : IUserRepositories
     {
 
-        private readonly CantinaAppContext db;
+        private readonly CantinaAppContext _ctx;
 
         public SQLUserRepositories(CantinaAppContext context)
         {
-            db = context;
+            _ctx = context;
         }
 
         public void Add(Users entity)
         {
-            db.User.Add(entity);
-            db.SaveChanges();
+            _ctx.UserFromCantine.Add(entity);
+            _ctx.SaveChanges();
         }
 
-        public void Edit(Users entity)
+        public Users CreateUsers(Users user)
         {
-            db.Entry(entity).State = EntityState.Modified;
-            db.SaveChanges();
+            _ctx.Attach(user).State = EntityState.Added;
+            _ctx.SaveChanges();
+            return user;
         }
 
-        public Users Get(long id)
+        public Users DeleteUsers(int id)
         {
-            return db.User.FirstOrDefault(b => b.Id == id);
+            var userToDelete = _ctx.UserFromCantine.ToList().FirstOrDefault(b => b.Id == id);
+            _ctx.UserFromCantine.Remove(userToDelete);
+            _ctx.SaveChanges();
+            return userToDelete;
         }
 
-        public IEnumerable<Users> GetAll()
+        public IEnumerable<Users> ReadAllUsers()
         {
-            return db.User.ToList();
+            return _ctx.UserFromCantine;
         }
 
-        public void Remove(long id)
+        public Users UpdateUser(Users userUpdate)
         {
-            var item = db.User.FirstOrDefault(b => b.Id == id);
-            db.User.Remove(item);
-            db.SaveChanges();
+            _ctx.Attach(userUpdate).State = EntityState.Modified;
+            _ctx.SaveChanges();
+            return userUpdate;
         }
     }
 }

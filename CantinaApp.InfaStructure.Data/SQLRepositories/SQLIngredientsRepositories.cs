@@ -1,10 +1,8 @@
 ﻿using CantinaApp.Core.DomainServices;
 using CantinaApp.Core.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CantinaApp.InfaStructure.Data.SQLRepositories
 {
@@ -21,9 +19,9 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         {
             //Clone orderlines to new location in memory, so they are not overridden on Attach
             var newRecipeLines = new List<RecipeLine>(ingredient.RecipeLines);
-            //Attach order so basic properties are updated
+            //Attach ingredient so basic properties are updated
             _ctx.Attach(ingredient).State = EntityState.Added;
-            //Remove all orderlines with updated order information
+            //Remove all recipelines with updated order information
             _ctx.RecipeLine.RemoveRange(
                 _ctx.RecipeLine.Where(ol => ol.MainFoodId == ingredient.Id)
             );
@@ -73,20 +71,12 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             var newRecipeLines = new List<RecipeLine>(ingredientUpdate.RecipeLines);
             //Attach order so basic properties are updated
             _ctx.Attach(ingredientUpdate).State = EntityState.Modified;
-            //Remove all orderlines with updated order information
-            /*_ctx.RecipeLine.RemoveRange(
-                _ctx.RecipeLine.Where(ol => ol.IngredientsId == ingredientUpdate.Id)
-            );*/
             //Add all orderlines with updated order information
             
             foreach (var ol in newRecipeLines)
             {
                 
                     _ctx.Entry(ol).State = EntityState.Added;
-
-                
-                
-                
             }
             // Save it
             _ctx.SaveChanges();

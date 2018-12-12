@@ -8,5 +8,6 @@ namespace CantinaApp.Core.Entity.Entities
     {
         public int Id { get; set; }
         public string AllergenType { get; set; }
+        public List<AllergensInMenu> AllergensInMenu { get; set; }
     }
 }

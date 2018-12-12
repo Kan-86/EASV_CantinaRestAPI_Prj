@@ -7,13 +7,11 @@ namespace CantinaApp.Core.ApplicationServices
 {
     public interface IUsersServices
     {
-        Users GetUsersInstance();
-
         List<Users> GetUsers();
 
         Users AddUsers(Users motd);
 
-        Users DeleteMOTD(int id);
+        Users DeleteUser(int id);
 
         Users FindUsersId(int id);
 
