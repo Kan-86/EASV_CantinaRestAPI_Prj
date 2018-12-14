@@ -40,6 +40,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             {
 
                 return _ctx.MainFood
+                    .Include(c => c.AllergensInMenu)
                     .Include(c => c.RecipeLines)
                     .ThenInclude(c => c.IngredientsType)
                      ;
@@ -82,7 +83,8 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public MainFood ReadByIdIncludeRecipAlrg(int id)
         {
-            return _ctx.MainFood
+            return _ctx.MainFood.
+                    Include(c => c.AllergensInMenu)
                     .Include(c => c.RecipeLines)
                     .ThenInclude(c => c.IngredientsType)
                     .FirstOrDefault(c => c.Id == id);
@@ -90,7 +92,8 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public IEnumerable<MainFood> ReadTodayMenues(DateTime date)
         {
-            return _ctx.MainFood
+            return _ctx.MainFood.
+                    Include(c=> c.AllergensInMenu)
                     .Include(c => c.RecipeLines)
                     .ThenInclude(c => c.IngredientsType)
                     .Where(c => c.FoodDate.Date == date.Date);
