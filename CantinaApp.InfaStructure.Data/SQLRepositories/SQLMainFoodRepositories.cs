@@ -41,8 +41,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
                 return _ctx.MainFood
                     .Include(c => c.RecipeLines)
-                    .ThenInclude(c => c.IngredientsType).
-                    Include(c => c.AllergensInMenu)
+                    .ThenInclude(c => c.IngredientsType)
                      ;
 
             }
@@ -85,8 +84,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         {
             return _ctx.MainFood
                     .Include(c => c.RecipeLines)
-                    .ThenInclude(c => c.IngredientsType).
-                    Include(c => c.AllergensInMenu)
+                    .ThenInclude(c => c.IngredientsType)
                     .FirstOrDefault(c => c.Id == id);
         }
 
@@ -94,8 +92,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         {
             return _ctx.MainFood
                     .Include(c => c.RecipeLines)
-                    .ThenInclude(c => c.IngredientsType).
-                    Include(c=> c.AllergensInMenu)
+                    .ThenInclude(c => c.IngredientsType)
                     .Where(c => c.FoodDate.Date == date.Date);
                     
         }
