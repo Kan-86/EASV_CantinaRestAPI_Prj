@@ -39,7 +39,10 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             if (filter == null)
             {
 
-                return _ctx.MainFood;
+                return _ctx.MainFood
+                    .Include(c => c.RecipeLines)
+                    .ThenInclude(c => c.IngredientsType)
+                     ;
 
             }
             return _ctx.MainFood
