@@ -40,7 +40,8 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             {
 
                 return _ctx.MainFood
-                    .Include(c => c.AllergensInMenu)
+                    .Include(c => c.AllergensInMenu).
+                    ThenInclude(x => x.AllergenType)
                     .Include(c => c.RecipeLines)
                     .ThenInclude(c => c.IngredientsType)
                      ;
@@ -56,14 +57,22 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
             //Clone orderlines to new location in memory, so they are not overridden on Attach
             var newRecipeLines = new List<RecipeLine>(foodUpdate.RecipeLines);
+            var newAllegens = new List<AllergensInMenu>(foodUpdate.AllergensInMenu);
             //Attach order so basic properties are updated
-            _ctx.Attach(foodUpdate).State = EntityState.Modified;
+             _ctx.Attach(foodUpdate).State = EntityState.Modified;
             //Remove all orderlines with updated order information
             _ctx.RecipeLine.RemoveRange(
                 _ctx.RecipeLine.Where(ol => ol.MainFoodId == foodUpdate.Id)
             );
+            _ctx.AllergensInMenu.RemoveRange(
+                _ctx.AllergensInMenu.Where(ol => ol.MainFoodId == foodUpdate.Id)
+            );
             //Add all orderlines with updated order information
             foreach (var ol in newRecipeLines)
+            {
+                _ctx.Entry(ol).State = EntityState.Added;
+            }
+            foreach (var ol in newAllegens)
             {
                 _ctx.Entry(ol).State = EntityState.Added;
             }
@@ -84,7 +93,8 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         public MainFood ReadByIdIncludeRecipAlrg(int id)
         {
             return _ctx.MainFood.
-                    Include(c => c.AllergensInMenu)
+                    Include(c=> c.AllergensInMenu).
+                    ThenInclude(x=> x.AllergenType)
                     .Include(c => c.RecipeLines)
                     .ThenInclude(c => c.IngredientsType)
                     .FirstOrDefault(c => c.Id == id);
@@ -93,7 +103,8 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         public IEnumerable<MainFood> ReadTodayMenues(DateTime date)
         {
             return _ctx.MainFood.
-                    Include(c=> c.AllergensInMenu)
+                    Include(c=> c.AllergensInMenu).
+                    ThenInclude(x=> x.AllergenType)
                     .Include(c => c.RecipeLines)
                     .ThenInclude(c => c.IngredientsType)
                     .Where(c => c.FoodDate.Date == date.Date);
