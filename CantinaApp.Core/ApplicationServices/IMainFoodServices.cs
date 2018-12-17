@@ -15,7 +15,7 @@ namespace CantinaApp.Core.ApplicationServices
         MainFood FindMainFoodIdIncludeRecipAlrg(int id);
 
         MainFood UpdateMainFood(MainFood mainFoodUpdate);
-        List<MainFood> GetFilteredMainFood(Filter filter);
+
         IEnumerable<MainFood> GetTodayFood(DateTime date);
 
     }

@@ -20,9 +20,7 @@ namespace EASV_CantinaRestAPI.Controllers
         // GET: api/<controller>
         [HttpGet]
         public ActionResult<IEnumerable<MainFood>> Get([FromQuery] DateTime date)
-        {
-
-            
+        {            
             try
             { if (date.Date == DateTime.Now.Date)
                 {

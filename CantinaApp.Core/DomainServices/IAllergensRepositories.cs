@@ -9,7 +9,7 @@ namespace CantinaApp.Core.DomainServices
     {
         Allergens GetAllergenByID(int id);
 
-        IEnumerable<Allergens> ReadMAllergen();
+        IEnumerable<Allergens> ReadAllergen();
 
         Allergens CreateAllergen(Allergens allergen);
 

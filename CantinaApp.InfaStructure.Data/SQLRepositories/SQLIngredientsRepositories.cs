@@ -17,24 +17,9 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public Ingredients CreateIngredient(Ingredients ingredient)
         {
-
-            
             _ctx.Attach(ingredient).State = EntityState.Added;
-            // Save it
             _ctx.SaveChanges();
-            //Return it
             return ingredient;
-        }
-
-        public Ingredients GetIngredientsByID(int id)
-        {
-            return _ctx.Ingredients.FirstOrDefault(m => m.Id == id);
-        }
-
-        public Ingredients ReadById(int id)
-        {
-            return _ctx.Ingredients
-                .FirstOrDefault(c => c.Id == id);
         }
 
         public Ingredients ReadByIdIncludeAllergens(int id)

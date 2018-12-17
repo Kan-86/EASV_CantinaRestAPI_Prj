@@ -49,7 +49,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
                         .FirstOrDefault(c => c.Id == id);
         }
 
-        public IEnumerable<Allergens> ReadMAllergen()
+        public IEnumerable<Allergens> ReadAllergen()
         {
             return _ctx.Allergen;
         }

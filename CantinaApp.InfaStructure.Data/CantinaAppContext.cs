@@ -11,7 +11,6 @@ namespace CantinaApp.InfaStructure.Data
     {
         public CantinaAppContext(DbContextOptions<CantinaAppContext> opt) : base(opt)
         {
-
         }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)

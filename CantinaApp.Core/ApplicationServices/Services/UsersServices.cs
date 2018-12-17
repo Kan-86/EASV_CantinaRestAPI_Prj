@@ -9,9 +9,9 @@ namespace CantinaApp.Core.ApplicationServices.Services
 {
     public class UsersServices : IUsersServices
     {
-        readonly IUserRepositories _userRepo;
+        readonly DomainServices.IUserRepositories _userRepo;
 
-        public UsersServices(IUserRepositories userRepo)
+        public UsersServices(DomainServices.IUserRepositories userRepo)
         {
             _userRepo = userRepo;
         }

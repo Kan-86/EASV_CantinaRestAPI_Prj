@@ -7,6 +7,7 @@ using CantinaApp.Core.Entity.Entities;
 
 namespace CantinaApp.Core.ApplicationServices.Services
 {
+    //MOTD = Message Of The Day
     public class MOTDServices : IMOTDServices
     {
         readonly IMOTDRepositories _MOTDRepo;

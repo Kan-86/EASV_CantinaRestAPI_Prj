@@ -18,9 +18,9 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             _ctx = context;
         }
 
-        public void Add(Users entity)
+        public void Add(Users user)
         {
-            _ctx.UserFromCantine.Add(entity);
+            _ctx.UserFromCantine.Add(user);
             _ctx.SaveChanges();
         }
 

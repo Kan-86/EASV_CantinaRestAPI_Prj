@@ -23,11 +23,6 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             _ctx.SaveChanges();
             return specialOffers;
         }
-        
-        public SpecialOffers GetSpecialOffersByID(int id)
-        {
-            return _ctx.SpecialOffers.FirstOrDefault(m => m.Id == id);
-        }
 
         public SpecialOffers ReadByIdIncludeIngr(int id)
         {
@@ -57,9 +52,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
 
         public IEnumerable<SpecialOffers> ReadTodaySpecielOffers(DateTime date)
         {
-            
-                return _ctx.SpecialOffers   
-                        .Where(c => c.OffersDate.Date == date.Date);
+                return _ctx.SpecialOffers.Where(c => c.OffersDate.Date == date.Date);
             
         }
     }

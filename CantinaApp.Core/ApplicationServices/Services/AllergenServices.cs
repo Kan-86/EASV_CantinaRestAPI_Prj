@@ -37,7 +37,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public List<Allergens> GetAllergens()
         {
-            return _allergensRepo.ReadMAllergen().ToList();
+            return _allergensRepo.ReadAllergen().ToList();
         }
 
         public Allergens UpdateAllergen(Allergens allergenUpdate)

@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using IUsersServices = CantinaApp.Core.ApplicationServices.IUsersServices;
 
 namespace EASV_Cantina
 {
@@ -158,7 +159,6 @@ namespace EASV_Cantina
                     var services = scope.ServiceProvider;
                     var dbContext = services.GetService<CantinaAppContext>();
                     dbContext.Database.EnsureCreated();
-                    //DBInitializer.SeedDb(dbContext);
                 }
                 app.UseHsts();
             }

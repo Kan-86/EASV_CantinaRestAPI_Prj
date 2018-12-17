@@ -7,8 +7,6 @@ namespace CantinaApp.Core.DomainServices
 {
     public interface ISpecialOffersRepositories
     {
-        SpecialOffers GetSpecialOffersByID(int id);
-
         IEnumerable<SpecialOffers> ReadSpecialOffers();
 
         SpecialOffers CreateSpecialOffers(SpecialOffers specialOffers);

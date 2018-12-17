@@ -7,7 +7,7 @@ namespace CantinaApp.Core.DomainServices
     public interface IMainFoodRepositories
     {
 
-        IEnumerable<MainFood> ReadMainFood(Filter filter = null);
+        IEnumerable<MainFood> ReadMainFood();
 
         MainFood CreateMainFood(MainFood mainFood);
 
@@ -19,6 +19,5 @@ namespace CantinaApp.Core.DomainServices
 
         IEnumerable<MainFood> ReadTodayMenues(DateTime date);
 
-        int Count();  
     }
 }

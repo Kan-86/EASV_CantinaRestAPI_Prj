@@ -10,27 +10,27 @@ namespace EASV_CantinaRestAPI.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private IUserRepositories repository;
-        private IAuthenticationHelper authenticationHelper;
+        private IUserRepositories _userService;
+        private IAuthenticationHelper _authenticationHelper;
 
-        public AuthenticationController(IUserRepositories repos,
+        public AuthenticationController(IUserRepositories userService,
             IAuthenticationHelper authService)
         {
-            repository = repos;
-            authenticationHelper = authService;
+            _userService = userService;
+            _authenticationHelper = authService;
         }
 
         [HttpPost]
         public IActionResult Login([FromBody]LoginInputModel model)
         {
-            var user = repository.ReadAllUsers().FirstOrDefault(u => u.Username == model.Username);
+            var user = _userService.ReadAllUsers().FirstOrDefault(u => u.Username == model.Username);
 
             // check if username exists
             if (user == null)
                 return Unauthorized();
 
             // check if password is correct
-            if (!authenticationHelper.VerifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt))
+            if (!_authenticationHelper.VerifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt))
                 return Unauthorized();
 
             // Authentication successful
@@ -38,7 +38,7 @@ namespace EASV_CantinaRestAPI.Controllers
             {
                 username = user.Username,
                 user.IsAdmin,
-                token = authenticationHelper.GenerateToken(user)
+                token = _authenticationHelper.GenerateToken(user)
             });
         }
     }

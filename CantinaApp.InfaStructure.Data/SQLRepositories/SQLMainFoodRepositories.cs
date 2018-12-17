@@ -16,56 +16,31 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             _ctx = ctx;
         }
 
-        public int Count()
-        {
-            return _ctx.MainFood.Count();
-        }
-
         public MainFood CreateMainFood(MainFood mainFood)
         {
-           
             _ctx.Attach(mainFood).State = EntityState.Added;
-            // Save it
             _ctx.SaveChanges();
-            //Return it
             return mainFood;
         }
 
-        public IEnumerable<MainFood> ReadMainFood(Filter filter = null)
+        public IEnumerable<MainFood> ReadMainFood()
         {
-            var query = _ctx.Set<MainFood>();
-
-
-            if (filter == null)
-            {
-
-                return _ctx.MainFood;
-
-            }
-            return _ctx.MainFood
-                     .Skip((filter.CurrentPage - 1) * filter.ItemsPrPage)
-                 .Take(filter.ItemsPrPage).ToList();
+            return _ctx.MainFood.ToList();
         }
 
         public MainFood UpdateMainFood(MainFood foodUpdate)
         {
-
-            //Clone orderlines to new location in memory, so they are not overridden on Attach
             var newRecipeLines = new List<RecipeLine>(foodUpdate.RecipeLines);
-            //Attach order so basic properties are updated
             _ctx.Attach(foodUpdate).State = EntityState.Modified;
-            //Remove all orderlines with updated order information
             _ctx.RecipeLine.RemoveRange(
-                _ctx.RecipeLine.Where(ol => ol.MainFoodId == foodUpdate.Id)
+                _ctx.RecipeLine.Where(m => m.MainFoodId == foodUpdate.Id)
             );
-            //Add all orderlines with updated order information
-            foreach (var ol in newRecipeLines)
+
+            foreach (var RL in newRecipeLines)
             {
-                _ctx.Entry(ol).State = EntityState.Added;
+                _ctx.Entry(RL).State = EntityState.Added;
             }
-            // Save it
             _ctx.SaveChanges();
-            //Return it
             return foodUpdate;
         }
 
@@ -91,9 +66,9 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
                     .Include(c => c.RecipeLines)
                     .ThenInclude(c => c.IngredientsType)
                     .Where(c => c.FoodDate.Date == date.Date);
-                    
+
         }
 
-        
+
     }
 }
