@@ -24,14 +24,32 @@ namespace EASV_CantinaRestAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Ingredients>> Get()
         {
-            return _ingredientService.GetIngredients();
+            try
+            {
+
+                return Ok(_ingredientService.GetIngredients());
+            }
+
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public ActionResult<Ingredients> Get(int id)
         {
-            return _ingredientService.FindIngredientIdIncludeMainFood(id);
+            try
+            {
+
+                return Ok(_ingredientService.FindIngredientIdIncludeMainFood(id));
+            }
+
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // POST api/<controller>
@@ -67,7 +85,16 @@ namespace EASV_CantinaRestAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult<Ingredients> Delete(int id)
         {
-            return _ingredientService.DeleteIngredient(id);
+            try
+            {
+
+                return Ok(_ingredientService.DeleteIngredient(id));
+            }
+
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
