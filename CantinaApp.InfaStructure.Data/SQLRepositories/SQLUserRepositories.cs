@@ -21,7 +21,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
         public void Add(Users user)
         {
 
-            _ctx.Users.Add(entity);
+            _ctx.Users.Add(user);
             _ctx.SaveChanges();
         }
 

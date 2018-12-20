@@ -13,7 +13,7 @@ namespace UnitTest
     [TestClass]
    public class UnitTestMainFood
     {
-    /*
+    
         Mock<IMainFoodRepositories> mainFoodRepo;
         Mock<IAllergensRepositories> allergensRepo;
         Mock<IIngredientsRepositories> IngredientsRepo;
@@ -31,98 +31,68 @@ namespace UnitTest
                 );
 
         }
-
         [TestMethod]
-        public void CreateMainFoodWithoutName()
+        public void createMainfoodWithoutName()
         {
-            var mainFood = new MainFood()
+            var menu = new MainFood()
             {
-                FoodIconType = new FoodIcon()
-                {
-                    FoodIconType = "hey"
-                },
-                IngredientsType = new List<Ingredients>() {
-                    new Ingredients()
-                    {
-                         FoodIconType = new FoodIcon()
-                             {
-                                 FoodIconType = "hey"
-                                },
-                        IngredientType= "hey",
-
-
-                    }
-
-                },
+               
             };
-
-            Exception ex = Assert.ThrowsException<InvalidOperationException>(() =>
-                mainFoodService.AddMainFood(mainFood));
+            Exception ex = Assert.ThrowsException<ArgumentException>(() =>
+               mainFoodService.AddMainFood(menu));
             Assert.AreEqual("Main Food needs a name.", ex.Message);
-        }
 
+        }
         [TestMethod]
-        public void CreateMainFoodWithoutIngrediens()
+        public void deleteWithoutIdLowerThan1()
         {
-            var mainFood = new MainFood()
+            var menu = new MainFood()
             {
-                FoodIconType = new FoodIcon()
-                {
-                    FoodIconType = "hey"
-                },
-                MainFoodName = "hey"
+                Id=0
             };
+            Exception ex = Assert.ThrowsException<ArgumentException>(() =>
+               mainFoodService.DeleteMainFood(menu.Id));
+            Assert.AreEqual("ID requires to be greater than 0.", ex.Message);
 
-            Exception ex = Assert.ThrowsException<InvalidOperationException>(() =>
-                mainFoodService.AddMainFood(mainFood));
-            Assert.AreEqual("Main food need some ingredients", ex.Message);
         }
-
         [TestMethod]
-        public void CreateMainFoodWithoutIcon()
+        public void FindByIdWithoutId()
         {
-            var mainFood = new MainFood()
+            var menu = new MainFood()
             {
-                IngredientsType = new List<Ingredients>() {
-                    new Ingredients()
-                    {
-                         FoodIconType = new FoodIcon()
-                             {
-                                 FoodIconType = "hey"
-                                },
-                        IngredientType= "hey",
-
-
-                    }
-
-                },
-                MainFoodName = "hey"
+                Id = 0
             };
+            Exception ex = Assert.ThrowsException<ArgumentException>(() =>
+               mainFoodService.FindMainFoodIdIncludeRecipAlrg(menu.Id));
+            Assert.AreEqual("ID requires to be greater than 0.", ex.Message);
 
-            Exception ex = Assert.ThrowsException<InvalidOperationException>(() =>
-                mainFoodService.AddMainFood(mainFood));
-            Assert.AreEqual("Main food needs an icon", ex.Message);
+        }
+        [TestMethod]
+        public void UpdateMainFoodWithIdLowerThan1()
+        {
+            var menu = new MainFood()
+            {
+                Id = 0,
+                MainFoodName = "pasta"
+            };
+            Exception ex = Assert.ThrowsException<ArgumentException>(() =>
+               mainFoodService.UpdateMainFood(menu));
+            Assert.AreEqual("You need to have an higher id than 0", ex.Message);
+
         }
 
-        [TestMethod]
-        public void DeleteMain()
+        public void UpdateMainFoodWithoutName()
         {
-            var id = 0;
+            var menu = new MainFood()
+            {
+                Id = 1
+            };
+            Exception ex = Assert.ThrowsException<ArgumentException>(() =>
+               mainFoodService.FindMainFoodIdIncludeRecipAlrg(menu.Id));
+            Assert.AreEqual("Main Food needs a name.", ex.Message);
 
-            Exception ex = Assert.ThrowsException<InvalidOperationException>(() =>
-                mainFoodService.DeleteMainFood(id));
-            Assert.AreEqual("Main Food Id needs to be larger than 1.", ex.Message);
         }
 
-        [TestMethod]
-        public void ReadById0()
-        {
-            var id = 0;
-
-            Exception ex = Assert.ThrowsException<InvalidOperationException>(() =>
-                mainFoodService.FindMainFoodId(id));
-            Assert.AreEqual("Main Food Id needs to be larger than 1.", ex.Message);
-        }*/
 
     }
 }

@@ -53,7 +53,7 @@ namespace CantinaApp.Core.ApplicationServices.Services
             {
                 throw new ArgumentException("Íd need to be higher than 0");
             }
-            if (allergen.AllergenType == null)
+            if (allergenUpdate.AllergenType == null)
             {
                 throw new ArgumentException("You need to add a name for the allergen");
             }

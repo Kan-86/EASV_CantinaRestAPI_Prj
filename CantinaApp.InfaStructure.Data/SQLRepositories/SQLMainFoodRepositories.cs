@@ -29,8 +29,7 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
             var query = _ctx.Set<MainFood>();
 
 
-            if (filter == null)
-            {
+            
 
                 return _ctx.MainFood
                     .Include(c => c.AllergensInMenu).
@@ -39,16 +38,22 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
                     .ThenInclude(c => c.IngredientsType)
                      ;
 
-            }
-            return _ctx.MainFood
-                     .Skip((filter.CurrentPage - 1) * filter.ItemsPrPage)
-                 .Take(filter.ItemsPrPage).ToList();
+          
         }
 
         public MainFood UpdateMainFood(MainFood foodUpdate)
         {
-            var newRecipeLines = new List<RecipeLine>(foodUpdate.RecipeLines);
-            var newAllegens = new List<AllergensInMenu>(foodUpdate.AllergensInMenu);
+            List<RecipeLine> newRecipeLines= new List<RecipeLine>();
+            List<AllergensInMenu> newAllegensMenu = new List<AllergensInMenu>();
+            if ( foodUpdate.RecipeLines != null)
+            {
+            newRecipeLines = new List<RecipeLine>(foodUpdate.RecipeLines);
+            }
+            if ( foodUpdate.AllergensInMenu != null)
+            { 
+             newAllegensMenu = new List<AllergensInMenu>(foodUpdate.AllergensInMenu);
+            }
+
             _ctx.Attach(foodUpdate).State = EntityState.Modified;
 
             
@@ -61,15 +66,15 @@ namespace CantinaApp.InfaStructure.Data.SQLRepositories
                 _ctx.AllergensInMenu.Where(ol => ol.MainFoodId == foodUpdate.Id)
             );
             
-            foreach (var ol in newRecipeLines)
+            foreach (var RL in newRecipeLines)
 
             {
                 _ctx.Entry(RL).State = EntityState.Added;
             }
 
-            foreach (var ol in newAllegens)
+            foreach (var AM in newAllegensMenu)
             {
-                _ctx.Entry(ol).State = EntityState.Added;
+                _ctx.Entry(AM).State = EntityState.Added;
             }
             // Save it
 
