@@ -18,6 +18,10 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public Users AddUsers(Users user)
         {
+            if (user.Username == null)
+            {
+                throw new ArgumentException("You need to have an username");
+            }
             return _userRepo.CreateUsers(user);
         }
 
@@ -49,6 +53,10 @@ namespace CantinaApp.Core.ApplicationServices.Services
             if (userUpdate.Id < 1)
             {
                 throw new ArgumentException("You need to have an higher id than 0");
+            }
+            if (userUpdate.Username == null)
+            {
+                throw new ArgumentException("You need to have an username");
             }
             return _userRepo.UpdateUser(userUpdate);
         }

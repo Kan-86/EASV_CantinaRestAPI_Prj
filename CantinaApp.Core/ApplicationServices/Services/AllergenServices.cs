@@ -26,12 +26,19 @@ namespace CantinaApp.Core.ApplicationServices.Services
         }
 
         public Allergens DeleteAllergen(int id)
-        {
+        {  if (id <1)
+            {
+                throw new ArgumentException("Íd need to be higher than 0");
+            }
             return _allergensRepo.DeleteAllergen(id);
         }
 
         public Allergens FindAllergenId(int id)
         {
+            if (id < 1)
+            {
+                throw new ArgumentException("Íd need to be higher than 0");
+            }
             return _allergensRepo.GetAllergenByID(id);
         }
 
@@ -42,6 +49,14 @@ namespace CantinaApp.Core.ApplicationServices.Services
 
         public Allergens UpdateAllergen(Allergens allergenUpdate)
         {
+            if (allergenUpdate.Id < 1)
+            {
+                throw new ArgumentException("Íd need to be higher than 0");
+            }
+            if (allergen.AllergenType == null)
+            {
+                throw new ArgumentException("You need to add a name for the allergen");
+            }
             return _allergensRepo.UpdateAllergen(allergenUpdate);
         }
     }
